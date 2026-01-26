@@ -1,0 +1,184 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model booking_rooms {
+  id         String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  booking_id String    @db.Uuid
+  room_id    String    @db.Uuid
+  room_price Decimal   @db.Decimal(10, 2)
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  deleted_at DateTime? @db.Timestamptz(6)
+  bookings   bookings  @relation(fields: [booking_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  rooms      rooms     @relation(fields: [room_id], references: [id], onUpdate: NoAction)
+
+  @@unique([booking_id, room_id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model bookings {
+  id                                   String          @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  guest_id                             String          @db.Uuid
+  booking_reference                    String          @unique @default(dbgenerated("((('BK-'::text || to_char(now(), 'YYYYMMDD'::text)) || '-'::text) || lpad((floor((random() * (10000)::double precision)))::text, 4, '0'::text))")) @db.VarChar(20)
+  check_in_date                        DateTime        @db.Date
+  check_out_date                       DateTime        @db.Date
+  status                               String          @default("Confirmed") @db.VarChar(20)
+  special_requests                     String?
+  total_amount                         Decimal?        @default(0) @db.Decimal(10, 2)
+  created_by                           String?         @db.Uuid
+  checked_in_by                        String?         @db.Uuid
+  checked_out_by                       String?         @db.Uuid
+  created_at                           DateTime?       @default(now()) @db.Timestamptz(6)
+  updated_at                           DateTime?       @default(now()) @db.Timestamptz(6)
+  deleted_at                           DateTime?       @db.Timestamptz(6)
+  booking_rooms                        booking_rooms[]
+  users_bookings_checked_in_byTousers  users?          @relation("bookings_checked_in_byTousers", fields: [checked_in_by], references: [id], onUpdate: NoAction)
+  users_bookings_checked_out_byTousers users?          @relation("bookings_checked_out_byTousers", fields: [checked_out_by], references: [id], onUpdate: NoAction)
+  users_bookings_created_byTousers     users?          @relation("bookings_created_byTousers", fields: [created_by], references: [id], onUpdate: NoAction)
+  guests                               guests          @relation(fields: [guest_id], references: [id], onUpdate: NoAction)
+  payments                             payments[]
+}
+
+model guests {
+  id              String     @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  full_name       String     @db.VarChar(100)
+  email           String?    @db.VarChar(100)
+  phone           String?    @db.VarChar(20)
+  address         String?
+  identity_number String?    @unique @db.VarChar(50)
+  created_at      DateTime?  @default(now()) @db.Timestamptz(6)
+  updated_at      DateTime?  @default(now()) @db.Timestamptz(6)
+  deleted_at      DateTime?  @db.Timestamptz(6)
+  bookings        bookings[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model housekeeping_logs {
+  id             String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  room_id        String    @db.Uuid
+  staff_id       String?   @db.Uuid
+  task_type      String    @db.VarChar(20)
+  scheduled_date DateTime  @db.Date
+  completed_at   DateTime? @db.Timestamptz(6)
+  status         String    @default("Pending") @db.VarChar(20)
+  notes          String?
+  created_at     DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime? @default(now()) @db.Timestamptz(6)
+  deleted_at     DateTime? @db.Timestamptz(6)
+  rooms          rooms     @relation(fields: [room_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  staff          staff?    @relation(fields: [staff_id], references: [id], onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model payments {
+  id             String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  booking_id     String    @db.Uuid
+  amount         Decimal   @db.Decimal(10, 2)
+  payment_date   DateTime? @default(now()) @db.Timestamptz(6)
+  payment_method String    @db.VarChar(20)
+  tax_amount     Decimal?  @default(0) @db.Decimal(10, 2)
+  notes          String?
+  processed_by   String?   @db.Uuid
+  created_at     DateTime? @default(now()) @db.Timestamptz(6)
+  deleted_at     DateTime? @db.Timestamptz(6)
+  bookings       bookings  @relation(fields: [booking_id], references: [id], onUpdate: NoAction)
+  users          users?    @relation(fields: [processed_by], references: [id], onUpdate: NoAction)
+}
+
+model permissions {
+  id               String             @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name             String             @unique @db.VarChar(100)
+  description      String?
+  created_at       DateTime?          @default(now()) @db.Timestamptz(6)
+  updated_at       DateTime?          @default(now()) @db.Timestamptz(6)
+  deleted_at       DateTime?          @db.Timestamptz(6)
+  role_permissions role_permissions[]
+}
+
+model role_permissions {
+  id            String      @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  role_id       String      @db.Uuid
+  permission_id String      @db.Uuid
+  created_at    DateTime?   @default(now()) @db.Timestamptz(6)
+  deleted_at    DateTime?   @db.Timestamptz(6)
+  permissions   permissions @relation(fields: [permission_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  roles         roles       @relation(fields: [role_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([role_id, permission_id])
+}
+
+model roles {
+  id               String             @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name             String             @unique @db.VarChar(50)
+  description      String?
+  created_at       DateTime?          @default(now()) @db.Timestamptz(6)
+  updated_at       DateTime?          @default(now()) @db.Timestamptz(6)
+  deleted_at       DateTime?          @db.Timestamptz(6)
+  role_permissions role_permissions[]
+  users            users[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model room_types {
+  id           String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name         String    @unique @db.VarChar(50)
+  base_price   Decimal   @db.Decimal(10, 2)
+  max_capacity Int
+  description  String?
+  created_at   DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at   DateTime? @default(now()) @db.Timestamptz(6)
+  deleted_at   DateTime? @db.Timestamptz(6)
+  rooms        rooms[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model rooms {
+  id                String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  room_number       String              @unique @db.VarChar(10)
+  room_type_id      String              @db.Uuid
+  floor             Int
+  status            String              @default("Available") @db.VarChar(20)
+  created_at        DateTime?           @default(now()) @db.Timestamptz(6)
+  updated_at        DateTime?           @default(now()) @db.Timestamptz(6)
+  deleted_at        DateTime?           @db.Timestamptz(6)
+  booking_rooms     booking_rooms[]
+  housekeeping_logs housekeeping_logs[]
+  room_types        room_types          @relation(fields: [room_type_id], references: [id], onUpdate: NoAction)
+}
+
+model staff {
+  id                String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  user_id           String?             @unique @db.Uuid
+  full_name         String              @db.VarChar(100)
+  phone             String?             @db.VarChar(20)
+  identity_number   String?             @unique @db.VarChar(50)
+  created_at        DateTime?           @default(now()) @db.Timestamptz(6)
+  updated_at        DateTime?           @default(now()) @db.Timestamptz(6)
+  deleted_at        DateTime?           @db.Timestamptz(6)
+  housekeeping_logs housekeeping_logs[]
+  users             users?              @relation(fields: [user_id], references: [id], onUpdate: NoAction)
+}
+
+model users {
+  id                                      String     @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  email                                   String     @unique @db.VarChar(100)
+  password_hash                           String
+  role_id                                 String     @db.Uuid
+  is_active                               Boolean?   @default(true)
+  last_login                              DateTime?  @db.Timestamptz(6)
+  created_at                              DateTime?  @default(now()) @db.Timestamptz(6)
+  updated_at                              DateTime?  @default(now()) @db.Timestamptz(6)
+  deleted_at                              DateTime?  @db.Timestamptz(6)
+  bookings_bookings_checked_in_byTousers  bookings[] @relation("bookings_checked_in_byTousers")
+  bookings_bookings_checked_out_byTousers bookings[] @relation("bookings_checked_out_byTousers")
+  bookings_bookings_created_byTousers     bookings[] @relation("bookings_created_byTousers")
+  payments                                payments[]
+  staff                                   staff?
+  roles                                   roles      @relation(fields: [role_id], references: [id], onUpdate: NoAction)
+}
