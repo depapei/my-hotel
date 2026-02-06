@@ -21,15 +21,15 @@ export const Navigation = () => {
       href: "/",
     },
     {
-      title: "Rooms",
-      href: "/rooms",
-    },
-    {
-      title: "About",
+      title: "Tentang Kami",
       href: "/about",
     },
     {
-      title: "Contact",
+      title: "Kamar",
+      href: "/rooms",
+    },
+    {
+      title: "Informasi & Kontak",
       href: "/contact",
     },
   ];
