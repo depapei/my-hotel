@@ -18,7 +18,7 @@ export const Navigation = () => {
   const Menus: MenuType[] = [
     {
       title: "Home",
-      href: "/",
+      href: "/#home",
     },
     {
       title: "Tentang Kami",
