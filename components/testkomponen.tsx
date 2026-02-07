@@ -1,12 +1,11 @@
-import { div } from "framer-motion/client";
 import Image from "next/image";
-
+import BannerImage from "@/public/asset/Frame 68.png";
 
 export function Banner() {
   return (
     <div>
       <p>ksksksk </p>
-      <Image src="@public/asset/Frame-68.png" width={10} height={20} alt="ss" />
+      <Image src={BannerImage} width={1080} height={540} alt="ss" />
     </div>
   );
 }
