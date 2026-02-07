@@ -36,7 +36,7 @@ export const Navigation = () => {
   ];
 
   return (
-    <nav className="flex flex-row justify-center items-center bg-gradient-to-t bg-black bg-opacity-75 w-fit opacity-95 mt-3  rounded-lg shadow-2xl">
+    <nav className="flex flex-row justify-center items-center bg-gradient-to-t bg-black bg-opacity-75 w-fit opacity-95 mt-4  rounded-lg shadow-2xl">
       {/* <Image
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp2bJAndZZhiaNNogkeVbbY1Lq7aRxXx70cA&s"
             alt="logo"
@@ -50,7 +50,7 @@ export const Navigation = () => {
             <Link
               key={idx}
               href={href}
-              className={`hover:animate-pulse text-[#FFE07C] font-medium ${pathName === href && "text-[#776a40] animate-pulse"} flex justify-center items-center`}
+              className={`hover:animate-pulse text-white font-medium ${pathName === href && "animate-pulse"} flex justify-center items-center`}
             >
               <li>{title}</li>
             </Link>

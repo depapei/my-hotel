@@ -12,12 +12,12 @@ const PublicLayout = ({
   const isHomePage = pathName === "/";
   return (
     <div className="min-h-screen flex flex-col justify-between">
-      <div className="fixed flex justify-center items-center w-full">
+      <div className="fixed flex justify-center items-center w-full z-50">
         <Navigation />
       </div>
       <article>
         {isHomePage && <Hero />}
-        <div className={`mx-auto container ${!isHomePage && "mt-12"}`}>
+        <div className={`mx-auto container ${!isHomePage && "mt-16"}`}>
           <div className="mb-8">{children}</div>
         </div>
       </article>

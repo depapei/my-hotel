@@ -1,9 +1,26 @@
 export const HeadingText = (props: {
   children: React.ReactNode;
-  size: "xl" | "lg" | "md" | "sm";
+  size?:
+    | "text-xs"
+    | "text-sm"
+    | "text-lg"
+    | "text-xl"
+    | "text-2xl"
+    | "text-3xl"
+    | "text-4xl"
+    | "text-5xl"
+    | "text-6xl"
+    | "text-7xl"
+    | "text-8xl"
+    | "text-9xl";
+  className?: string;
 }) => {
-  const { children, size } = props;
-  return <h1 className={`font-medium text-${size} `}>{children}</h1>;
+  const { children, size, className } = props;
+  return (
+    <h1 className={`font-semibold ${size} text-[#6B6B6B] ${className}`}>
+      {children}
+    </h1>
+  );
 };
 
 export default HeadingText;
