@@ -18,7 +18,7 @@ export const Navigation = () => {
   const Menus: MenuType[] = [
     {
       title: "Home",
-      href: "/#home",
+      href: "/",
     },
     {
       title: "Tentang Kami",
@@ -35,7 +35,7 @@ export const Navigation = () => {
   ];
 
   return (
-    <nav className="flex flex-row justify-center items-center bg-gray-200 w-fit opacity-95 mt-3  rounded-lg shadow-2xl">
+    <nav className="flex flex-row justify-center items-center bg-gradient-to-t bg-black bg-opacity-75 w-fit opacity-95 mt-3  rounded-lg shadow-2xl">
       {/* <Image
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp2bJAndZZhiaNNogkeVbbY1Lq7aRxXx70cA&s"
             alt="logo"
@@ -49,7 +49,7 @@ export const Navigation = () => {
             <Link
               key={idx}
               href={href}
-              className={`hover:animate-pulse text-blue-500 font-medium ${pathName === href && "text-blue-400 animate-pulse"}`}
+              className={`hover:animate-pulse text-[#FFE07C] font-medium ${pathName === href && "text-[#776a40] animate-pulse"}`}
             >
               <li>{title}</li>
             </Link>
