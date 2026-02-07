@@ -1,4 +1,4 @@
-export const ContactPage = () => {
+const ContactPage = () => {
   return <>This is A Contact Page</>;
 };
 

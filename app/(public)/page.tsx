@@ -1,7 +1,7 @@
 import Card from "@/components/cards";
 import { Hero } from "@/components/hero";
 
-export const Home = () => {
+const Home = () => {
   return (
     <article>
       <Hero />

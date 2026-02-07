@@ -1,7 +1,5 @@
 import Footer from "@/components/footer";
 import Navigation from "@/components/nav";
-import Image from "next/image";
-import Link from "next/link";
 
 const PublicLayout = ({
   children,

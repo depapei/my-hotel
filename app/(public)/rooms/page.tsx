@@ -1,4 +1,4 @@
-export const RoomPage = () => {
+const RoomPage = () => {
   return <>This is A Room Page</>;
 };
 
