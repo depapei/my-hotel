@@ -1,5 +1,5 @@
 import { prisma } from "@/db/client";
-import { getRoomById } from "@/lib/data-access";
+import { getRoomById } from "@/lib/data-access/room";
 import { deobfuscateId, obfuscateId } from "@/lib/helper/idObfuscator";
 import {
   InternalServerError,

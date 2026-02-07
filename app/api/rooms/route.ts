@@ -1,8 +1,9 @@
-import { getAllRoom } from "@/lib/data-access";
+import { getAllRoom } from "@/lib/data-access/room";
 import { obfuscateId } from "@/lib/helper/idObfuscator";
 import { InternalServerError, NotFound, Success } from "@/lib/helper/responses";
+import { NextRequest } from "next/server";
 
-export const GET = async (request: Request) => {
+export const GET = async (request: NextRequest) => {
   try {
     const data = await getAllRoom();
     const rooms: RoomType[] = data.map((room) => ({

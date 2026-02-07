@@ -47,7 +47,6 @@ export const getRoomById = async (id: string) => {
 
 export const createRoom = async (data: any) => {
   try {
-    console.log(data);
     const newRoom = await prisma.room_types.create({
       data,
       omit: {
@@ -66,7 +65,7 @@ export const updateRoom = async (id: string, data: any) => {
       where: {
         id: id,
       },
-      data,
+      data: data,
       omit: {
         deleted_at: true,
         created_at: true,
@@ -88,7 +87,7 @@ export const deleteRoom = async (id: string) => {
       data: {
         deleted_at: new Date(),
       },
-      omit: {
+      select: {
         deleted_at: true,
       },
     });
