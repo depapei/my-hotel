@@ -2,6 +2,7 @@
 import About from "@/components/Sections/About";
 import Contact from "@/components/Sections/Contact";
 import Rooms from "@/components/Sections/Rooms";
+import Banner from "@/components/testkomponen";
 
 const Home = () => {
   return (
@@ -14,6 +15,9 @@ const Home = () => {
       </section>
       <section className="mt-16">
         <Contact />
+      </section>
+      <section className="mt-16">
+        <Banner />
       </section>
     </>
   );
