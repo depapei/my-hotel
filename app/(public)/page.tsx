@@ -10,10 +10,17 @@ const Home = () => {
         <About />
       </section>
       <section className="mt-16">
+      <section className="mt-16">
+        <About />
+      </section>
+      <section className="mt-16">
         <Rooms />
       </section>
       <section className="mt-16">
         <Contact />
+      </section>
+      <section className="mt-16">
+        <Banner />
       </section>
     </>
   );
