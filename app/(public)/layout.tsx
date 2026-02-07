@@ -1,4 +1,3 @@
-import Footer from "@/components/footer";
 import Navigation from "@/components/nav";
 
 const PublicLayout = ({
@@ -14,7 +13,6 @@ const PublicLayout = ({
       <div className="mx-auto container">
         <div className="mt-24 mb-8">{children}</div>
       </div>
-      <Footer />
     </div>
   );
 };
