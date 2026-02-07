@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import Button from "../Atom/Button";
 
 type MenuType = {
   title: string;
@@ -49,7 +50,7 @@ export const Navigation = () => {
             <Link
               key={idx}
               href={href}
-              className={`hover:animate-pulse text-[#FFE07C] font-medium ${pathName === href && "text-[#776a40] animate-pulse"}`}
+              className={`hover:animate-pulse text-[#FFE07C] font-medium ${pathName === href && "text-[#776a40] animate-pulse"} flex justify-center items-center`}
             >
               <li>{title}</li>
             </Link>

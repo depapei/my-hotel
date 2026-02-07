@@ -1,7 +1,9 @@
+"use client";
+import Button, { DetailButtonText } from "@/components/Atom/Button";
 import About from "@/components/Sections/About";
 import Contact from "@/components/Sections/Contact";
-import Hero from "@/components/Sections/Hero";
 import Rooms from "@/components/Sections/Rooms";
+import { Download } from "lucide-react";
 
 const Home = () => {
   return (
