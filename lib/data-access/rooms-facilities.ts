@@ -21,6 +21,7 @@ export const getAllRoomsFacilities = async () => {
         description: true,
         base_price: true,
         max_capacity: true,
+        imagePath: true,
         rooms_facilities: {
           select: {
             facilities: {
@@ -30,6 +31,9 @@ export const getAllRoomsFacilities = async () => {
             },
           },
         },
+      },
+      where: {
+        deleted_at: null,
       },
       orderBy: {
         created_at: "asc",
@@ -43,15 +47,19 @@ export const getAllRoomsFacilities = async () => {
         base_price,
         max_capacity,
         rooms_facilities,
+        imagePath,
       } = roomType;
+      const discountPrice =
+        Number(base_price) -
+        (Number(base_price) * 11.111111111111111111111111111111111) / 100;
       return {
-        room: {
-          id: obfuscateId(id),
-          name: name,
-          description: description,
-          price: base_price,
-          capacity: max_capacity,
-        },
+        id: obfuscateId(id),
+        img: imagePath ? obfuscateId(imagePath) : "",
+        name: name,
+        description: description,
+        price: base_price,
+        discountPrice: discountPrice,
+        capacity: max_capacity,
         facilities: rooms_facilities.map((rf) => rf.facilities.name),
       };
     });

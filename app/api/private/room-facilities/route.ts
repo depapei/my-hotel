@@ -2,7 +2,7 @@ import {
   createRoomFacility,
   getAllRoomsFacilities,
 } from "@/lib/data-access/rooms-facilities";
-import { deobfuscateId, obfuscateId } from "@/lib/helper/idObfuscator";
+import { deobfuscateId } from "@/lib/helper/idObfuscator";
 import { InternalServerError, Success } from "@/lib/helper/responses";
 import { NextRequest } from "next/server";
 
