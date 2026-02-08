@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build": "prisma generate && prisma db pull && next build"
+    "vercel-build": "prisma generate && prisma db pull && next build",
+    "build:prod": "prisma generate && prisma db pull && next build"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.3.0",
