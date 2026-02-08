@@ -1,5 +1,5 @@
 const Button = (props: {
-  label: String;
+  label: string;
   icon?: React.ReactNode;
   detail?: React.ReactNode;
   onClick: () => void;

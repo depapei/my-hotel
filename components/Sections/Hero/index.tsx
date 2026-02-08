@@ -31,8 +31,8 @@ const Hero = () => {
             <div className="my-8">
               <p className="text-xl text-white">Google Map Rating</p>
               <div className="grid grid-cols-5">
-                {[0, 1, 2, 3, 4].map((idx) => (
-                  <Star strokeWidth={0} fill="#FFE07C" />
+                {[0, 1, 2, 3, 4].map((idx: React.Key) => (
+                  <Star key={idx} strokeWidth={0} fill="#FFE07C" />
                 ))}
               </div>
             </div>
