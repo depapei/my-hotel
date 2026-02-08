@@ -6,13 +6,13 @@ import Rooms from "@/components/Sections/Rooms";
 const Home = () => {
   return (
     <>
-      <section className="mt-16">
+      <section className="mt-32">
         <About />
       </section>
-      <section className="mt-16">
+      <section className="mt-32">
         <Rooms />
       </section>
-      <section className="mt-16">
+      <section className="mt-32">
         <Contact />
       </section>
     </>

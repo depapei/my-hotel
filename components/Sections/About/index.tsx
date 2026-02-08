@@ -5,7 +5,7 @@ import { Star, Smile } from "lucide-react";
 
 const About = () => {
   return (
-    <div className="w-full bg-white flex flex-col justify-center font-bold">
+    <div className="w-full bg-white flex flex-col justify-center font-bold gap-32">
       <AboutParagraph />
       <AboutData />
     </div>
@@ -15,8 +15,8 @@ const About = () => {
 export const AboutData = () => {
   return (
     <div>
-      <HeadingText size="text-lg" className="mb-4 text-center mt-16">
-        Dengan data
+      <HeadingText size="text-4xl" className="mb-4 text-center mt-16">
+        Testimoni
       </HeadingText>
       <div className="grid grid-cols-3">
         <Card

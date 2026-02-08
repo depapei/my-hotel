@@ -9,31 +9,31 @@ type MenuType = {
   href: string;
 };
 
+export const Menus: MenuType[] = [
+  {
+    title: "Home",
+    href: "/",
+  },
+  {
+    title: "Tentang Kami",
+    href: "/about",
+  },
+  {
+    title: "Kamar",
+    href: "/rooms",
+  },
+  {
+    title: "Informasi & Kontak",
+    href: "/contact",
+  },
+];
+
 export const Navigation = () => {
   const pathName = usePathname();
 
   useEffect(() => {
     console.log(pathName);
   }, [pathName]);
-
-  const Menus: MenuType[] = [
-    {
-      title: "Home",
-      href: "/",
-    },
-    {
-      title: "Tentang Kami",
-      href: "/about",
-    },
-    {
-      title: "Kamar",
-      href: "/rooms",
-    },
-    {
-      title: "Informasi & Kontak",
-      href: "/contact",
-    },
-  ];
 
   return (
     <nav className="flex flex-row justify-center items-center bg-gradient-to-t bg-black bg-opacity-75 w-fit opacity-95 mt-4  rounded-lg shadow-2xl">
