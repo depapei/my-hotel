@@ -2,21 +2,25 @@ import HeadingText from "@/components/Atom/Heading";
 import ParagraphText from "@/components/Atom/Paragraph";
 import Card from "@/components/Card";
 import { Star, Smile } from "lucide-react";
+import Image from "next/image";
 
 const About = () => {
   return (
     <div className="w-full bg-white flex flex-col justify-center font-bold gap-32">
-      <AboutParagraph />
       <AboutData />
+      <AboutParagraph />
     </div>
   );
 };
 
 export const AboutData = () => {
   return (
-    <div>
-      <HeadingText size="text-4xl" className="mb-4 text-center mt-16">
-        Testimoni
+    <div className="space-y-32">
+      <HeadingText size="text-7xl" className="group text-center w-full">
+        Testi
+        <span className="hover:cursor-pointer group-hover:text-[#8EC5FF] group-hover:underline transition-all duration-500">
+          moni
+        </span>
       </HeadingText>
       <div className="grid grid-cols-3">
         <Card
@@ -58,21 +62,40 @@ export const AboutData = () => {
 
 export const AboutParagraph = () => {
   return (
-    <div className="flex gap-16">
-      <div className="w-[50%]">Mending ini jadi gambar</div>
-      <div className="w-[50%]">
-        <HeadingText size="text-lg" className="mb-4">
-          Tentang Kami
-        </HeadingText>
-        <HeadingText size="text-2xl" className="mb-4">
-          Hotel Sinar Pelangi mulai beroperasi pada tahun 2022.
-        </HeadingText>
-        <ParagraphText size="text-xl">
-          Kami selalu ingin memberikan kenyamanan kepada pelanggan kami, dengan
-          harga yang terjangkau bukan berati pelayanan kami tidak terjangkau,
-          kami selalu mendengar masukan dari pelanggan kami, Sinar Pelangi
-          menunggu kedatangan kalian.
-        </ParagraphText>
+    <div className="space-y-32">
+      <HeadingText size="text-7xl" className="group text-center w-full">
+        Tentang{" "}
+        <span className="hover:cursor-pointer group-hover:text-[#8EC5FF] group-hover:underline transition-all duration-500">
+          Kami
+        </span>
+      </HeadingText>
+      <div className="flex justify-around">
+        <div className="w-[50%] flex flex-col items-center justify-center hover:scale-105  group transition-all duration-500">
+          <Image
+            src={"/asset/about.png"}
+            width={500}
+            height={100}
+            alt="wajah depan sinar pelangi"
+            className={"rounded-2xl group-hover:shadow-2xl"}
+          />
+          <HeadingText className="my-4">
+            Potret Hotel Sinar Pelangi dari depan
+          </HeadingText>
+        </div>
+        <div className="w-[50%] flex flex-col justify-center">
+          <HeadingText size="text-lg" className="mb-4">
+            Yuk, kenalan dengan hotel kami!
+          </HeadingText>
+          <HeadingText size="text-2xl" className="mb-4">
+            Hotel Sinar Pelangi mulai beroperasi pada tahun 2022.
+          </HeadingText>
+          <ParagraphText size="text-xl">
+            Kami selalu ingin memberikan kenyamanan kepada pelanggan kami,
+            dengan harga yang terjangkau bukan berati pelayanan kami tidak
+            terjangkau, kami selalu mendengar masukan dari pelanggan kami, Sinar
+            Pelangi menunggu kedatangan kalian.
+          </ParagraphText>
+        </div>
       </div>
     </div>
   );

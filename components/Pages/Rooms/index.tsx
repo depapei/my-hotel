@@ -1,5 +1,8 @@
+"use client";
+import Rooms from "@/components/Sections/Rooms";
+
 export const RoomsPage = () => {
-  return <></>;
+  return <Rooms />;
 };
 
 export default RoomsPage;
