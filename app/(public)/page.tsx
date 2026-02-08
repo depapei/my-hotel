@@ -7,10 +7,10 @@ const Home = () => {
   return (
     <>
       <section className="mt-32">
-        <About />
+        <Rooms />
       </section>
       <section className="mt-32">
-        <Rooms />
+        <About />
       </section>
       <section className="mt-32">
         <Contact />
