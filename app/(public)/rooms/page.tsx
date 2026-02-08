@@ -1,5 +1,7 @@
+import RoomsPage from "@/components/Pages/Rooms";
+
 const RoomPage = () => {
-  return <>This is A Room Page</>;
+  return <RoomsPage />;
 };
 
 export default RoomPage;
