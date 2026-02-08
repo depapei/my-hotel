@@ -1,7 +1,129 @@
+import Button from "@/components/Atom/Button";
+import HeadingText from "@/components/Atom/Heading";
+import ParagraphText from "@/components/Atom/Paragraph";
+import Card, { RoomCardLoading } from "@/components/Card/room";
+import fnConvertToRupiah from "@/lib/helper/converter";
+import { deobfuscateId } from "@/lib/helper/idObfuscator";
+import { useRooms } from "@/lib/httpCall/hooks/getRooms";
+import { motion } from "framer-motion";
+import { Bed, Check, CheckCircle, CheckSquare, Heading } from "lucide-react";
+import Image from "next/image";
+import { useMemo } from "react";
+
+interface IResponseRooms {
+  facilities: string[];
+  capacity: number;
+  id: string;
+  description: string;
+  name: string;
+  price: number;
+  discountPrice: number;
+  img: string;
+}
+
 const Rooms = () => {
+  const { data, isLoading, isError } = useRooms();
+  const rooms: IResponseRooms[] = useMemo(() => {
+    if (data) {
+      console.log(data);
+      return data;
+    }
+    return [];
+  }, [data]);
+
   return (
-    <div className="w-full h-svh bg-blue-300 flex items-center justify-center text-white text-3xl font-bold">
-      Rooms Section
+    <div className="w-full flex flex-col gap-32 items-center justify-center text-white text-3xl font-bold">
+      <HeadingText size="text-7xl" className="group">
+        Halo, silahkan jelajahi{" "}
+        <span className="hover:cursor-pointer group-hover:text-[#8EC5FF] group-hover:underline transition-all duration-500">
+          Kamar Kami
+        </span>
+      </HeadingText>
+
+      {isError && <div className="text-red-600">Error</div>}
+      {isLoading && (
+        <div className="grid grid-cols-2 gap-32">
+          <RoomCardLoading />
+          <RoomCardLoading />
+        </div>
+      )}
+      <div className="grid grid-cols-2 gap-32">
+        {rooms.length > 0 &&
+          rooms.map((room: IResponseRooms, idx: React.Key) => {
+            const imgPath = deobfuscateId(room.img);
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <Card
+                  title={room.name}
+                  icon={
+                    <Image
+                      width={500}
+                      height={100}
+                      src={imgPath.success && imgPath.id ? imgPath.id : ""}
+                      alt={`${room.name}.png`}
+                      // className="xl:scale-105"
+                      className="object-cover h-48 lg:h-64 w-full rounded-2xl"
+                      loading={"lazy"}
+                    />
+                  }
+                  onClick={() => {}}
+                >
+                  <div className="flex flex-grid gap-24">
+                    <div className="flex flex-col">
+                      {room.facilities.length > 0 &&
+                        room.facilities.map(
+                          (facility: string, index: React.Key) => {
+                            return (
+                              <div className="flex gap-2" key={index}>
+                                <CheckCircle
+                                  width={24}
+                                  height={24}
+                                  color="#8EC5FF"
+                                  className="group-hover:stroke-white transition-colors"
+                                />
+                                <p>{facility}</p>
+                              </div>
+                            );
+                          },
+                        )}
+                      {room.description && (
+                        <p className="mt-6">{room.description}</p>
+                      )}
+                    </div>
+                    <div className="flex flex-col justify-between">
+                      <div className="bg-[#fff] p-4 rounded-xl h-fit group-hover:shadow-2xl transition-all gap-4 flex flex-col">
+                        {/* Header */}
+                        <div className="flex flex-col gap-2">
+                          <HeadingText
+                            size="text-2xl"
+                            className="text-red-600 group-hover:animate-pulse"
+                          >
+                            {fnConvertToRupiah(room.discountPrice)}
+                          </HeadingText>
+                          <HeadingText size="text-lg" className="line-through">
+                            {fnConvertToRupiah(room.price)}
+                          </HeadingText>
+                        </div>
+                        <ParagraphText
+                          className="h-0 opacity-0 group-hover:opacity-100 group-hover:h-fit transition-all max-w-full"
+                          size="text-sm"
+                        >
+                          Tunggu apalagi? booking sekarang!
+                        </ParagraphText>
+                        <Button label="Booking Sekarang" onClick={() => {}} />
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            );
+          })}
+      </div>
     </div>
   );
 };
