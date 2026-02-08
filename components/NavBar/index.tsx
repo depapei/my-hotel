@@ -28,7 +28,7 @@ export const Menus: MenuType[] = [
   },
 ];
 
-export const Navigation = () => {
+const Navigation = () => {
   const pathName = usePathname();
 
   useEffect(() => {

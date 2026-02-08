@@ -1,5 +1,5 @@
 "use client";
-import Navigation from "@/components/Nav";
+import Navigation from "@/components/NavBar";
 import Hero from "@/components/Sections/Hero";
 import { usePathname } from "next/navigation";
 
