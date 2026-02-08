@@ -1,4 +1,4 @@
-import { deleteRoom, updateRoom } from "@/lib/data-access/room";
+import { deleteFacility, updateFacility } from "@/lib/data-access/facilities";
 import { deobfuscateId, obfuscateId } from "@/lib/helper/idObfuscator";
 import { InternalServerError, Success } from "@/lib/helper/responses";
 import { NextRequest } from "next/server";
@@ -14,33 +14,22 @@ export const PUT = async (
     const decodedId = deobfuscateId(String(id));
 
     if (decodedId.error || !decodedId.id) {
-      return InternalServerError("Failed to update room");
+      return InternalServerError("Failed to update facility");
     }
 
-    const data = await updateRoom(decodedId.id, updateData);
+    const data = await updateFacility(decodedId.id, updateData);
     if (!data) {
-      return InternalServerError("Failed to update room, data not found");
+      return InternalServerError("Failed to update facility, data not found");
     }
 
-    const {
-      name,
-      description,
-      max_capacity,
-      base_price,
-      updated_at,
-      id: newId,
-    } = data;
+    const { name, id: newId } = data;
     const result = {
       id: obfuscateId(newId),
       name: name,
-      description: description,
-      capacity: `${max_capacity} orang`,
-      price: `${base_price} / Malam`,
-      updatedAt: updated_at,
     };
     return Success(result);
   } catch (error) {
-    return InternalServerError("Failed to update room");
+    return InternalServerError("Failed to update facility");
   }
 };
 
@@ -53,12 +42,12 @@ export const DELETE = async (
     const decodedId = deobfuscateId(String(reqId));
 
     if (decodedId.error || !decodedId.id) {
-      return InternalServerError("Failed to delete room");
+      return InternalServerError("Failed to delete facility");
     }
 
-    const data = await deleteRoom(decodedId.id);
+    const data = await deleteFacility(decodedId.id);
     if (!data) {
-      return InternalServerError("Failed to delete room, data not found");
+      return InternalServerError("Failed to delete facility, data not found");
     }
 
     const result = {
@@ -68,6 +57,6 @@ export const DELETE = async (
 
     return Success(result);
   } catch (error) {
-    return InternalServerError("Failed to delete room");
+    return InternalServerError("Failed to delete facility");
   }
 };
