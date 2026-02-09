@@ -1,10 +1,10 @@
 export const RoomCard = (props: {
   onClick: () => void;
-  icon: React.ReactNode;
+  image: React.ReactNode;
   children: React.ReactNode;
   title: string;
 }) => {
-  const { onClick, icon, children, title } = props;
+  const { onClick, image, children, title } = props;
 
   return (
     <div
@@ -13,7 +13,7 @@ export const RoomCard = (props: {
     >
       <span className="absolute top-0 left-0 z-0 h-24 w-full bg-gradient-to-r from-purple-500 to-blue-500 opacity-75 transition-all duration-500 transform group-hover:scale-[20]"></span>
       <div className="relative z-10 mx-auto max-w-6xl">
-        <div className="flex w-full justify-center items-center">{icon}</div>
+        <div className="flex w-full justify-center items-center">{image}</div>
         <div className="mt-6 text-3xl leading-8 text-gray-700 transition-all duration-500 group-hover:text-white">
           <p>{title}</p>
         </div>
