@@ -37,7 +37,6 @@ export const GET = async (
 
     return Success(mappedRooms);
   } catch (error: any) {
-    console.log(error.message);
     return InternalServerError("Failed to fetch room");
   }
 };

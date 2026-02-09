@@ -73,7 +73,6 @@ export const updateRoom = async (id: string, data: any) => {
     });
     return updatedRoom;
   } catch (error) {
-    console.log("ERROR UPDATE ROOM:", error);
     return null;
   }
 };

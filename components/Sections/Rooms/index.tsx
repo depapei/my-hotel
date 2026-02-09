@@ -25,7 +25,6 @@ const Rooms = () => {
   const { data, isLoading, isError } = useRooms();
   const rooms: IResponseRooms[] = useMemo(() => {
     if (data) {
-      console.log(data);
       return data;
     }
     return [];

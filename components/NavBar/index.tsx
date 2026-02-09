@@ -1,8 +1,6 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect } from "react";
-import Button from "../Atom/Button";
+import { useEffect, useState } from "react";
 
 type MenuType = {
   title: string;
@@ -12,28 +10,28 @@ type MenuType = {
 export const Menus: MenuType[] = [
   {
     title: "Home",
-    href: "/",
+    href: "#home",
   },
   {
     title: "Tentang Kami",
-    href: "/about",
+    href: "#about",
   },
   {
     title: "Kamar",
-    href: "/rooms",
+    href: "#rooms",
   },
   {
     title: "Informasi & Kontak",
-    href: "/contact",
+    href: "#contact",
   },
 ];
 
 const Navigation = () => {
-  const pathName = usePathname();
+  const [hash, setHash] = useState<string>("");
 
-  useEffect(() => {
-    console.log(pathName);
-  }, [pathName]);
+  const fnSetHash = (hash: string) => {
+    setHash(hash);
+  };
 
   return (
     <>
@@ -45,7 +43,8 @@ const Navigation = () => {
               <Link
                 key={idx}
                 href={href}
-                className={`hover:animate-pulse text-white font-medium ${pathName === href && "animate-pulse"} flex justify-center items-center`}
+                onClick={() => fnSetHash(href)}
+                className={`hover:animate-pulse text-white font-medium ${hash === href && "animate-pulse"} flex justify-center items-center`}
               >
                 <li>{title}</li>
               </Link>
@@ -67,7 +66,7 @@ const Navigation = () => {
               <Link
                 key={idx}
                 href={href}
-                className={`hover:animate-pulse text-white font-medium ${pathName === href && "animate-pulse"} flex justify-center items-center`}
+                className={`hover:animate-pulse text-white font-medium ${hash === href && "animate-pulse"} flex justify-center items-center`}
               >
                 <li>{title}</li>
               </Link>
