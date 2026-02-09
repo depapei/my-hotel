@@ -67,7 +67,9 @@ const Navigation = () => {
       <nav
         className={`hidden lg:flex flex-row justify-around items-center w-full ${isNavbarVisible ? "bg-blue-500 opacity-100" : "bg-opacity-0"} transition-all duration-500`}
       >
-        <div className={` ${isNavbarVisible ? "text-whte" : "text-[#BEDBFF]"}`}>
+        <div
+          className={` ${isNavbarVisible ? "text-white" : "text-[#BEDBFF]"}`}
+        >
           <p className={`text-base font-semibold`}>Sinar Pelangi</p>
           <p className="text-sm">Hotel</p>
         </div>
