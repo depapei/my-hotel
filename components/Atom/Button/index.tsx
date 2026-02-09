@@ -8,7 +8,7 @@ const Button = (props: {
   return (
     <>
       <button
-        className="cursor-pointer group relative flex gap-1.5 px-16 py-4 bg-[#5278F5] bg-opacity-100 text-[#fff] rounded-md hover:bg-opacity-70 transition font-semibold shadow-md text-base justify-center"
+        className="cursor-pointer group relative flex gap-1.5 lg:px-8 py-4 bg-[#5278F5] bg-opacity-100 text-[#fff] rounded-md hover:bg-opacity-70 transition font-semibold shadow-md text-base justify-center sm:w-full"
         onClick={onClick}
       >
         {icon}

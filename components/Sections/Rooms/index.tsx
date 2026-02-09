@@ -32,8 +32,8 @@ const Rooms = () => {
   }, [data]);
 
   return (
-    <div className="w-full flex flex-col gap-32 items-center justify-center text-white text-3xl font-bold">
-      <HeadingText size="text-7xl" className="group">
+    <div className="w-full flex flex-col gap-8 lg:gap-12 xl:gap-16 items-center justify-center text-white text-3xl font-bold">
+      <HeadingText size="text-3xl" className="lg:text-5xl xl:text-7xl group">
         Halo, silahkan jelajahi{" "}
         <span className="hover:cursor-pointer group-hover:text-[#8EC5FF] group-hover:underline transition-all duration-500">
           Kamar Kami
@@ -42,12 +42,12 @@ const Rooms = () => {
 
       {isError && <div className="text-red-600">Error</div>}
       {isLoading && (
-        <div className="grid grid-cols-2 gap-32">
+        <div className="grid grid-cols-2 sm:gap-4 md:gap-8 lg:gap-12 xl:gap-16">
           <RoomCardLoading />
           <RoomCardLoading />
         </div>
       )}
-      <div className="grid grid-cols-2 gap-32">
+      <div className="grid grid-cols-2 sm:gap-4 md:gap-8 lg:gap-12 xl:gap-16">
         {rooms.length > 0 &&
           rooms.map((room: IResponseRooms, idx: React.Key) => {
             const imgPath = deobfuscateId(room.img);
@@ -60,7 +60,7 @@ const Rooms = () => {
               >
                 <Card
                   title={room.name}
-                  icon={
+                  image={
                     <Image
                       width={500}
                       height={100}
@@ -73,20 +73,25 @@ const Rooms = () => {
                   }
                   onClick={() => {}}
                 >
-                  <div className="flex flex-grid gap-24">
-                    <div className="flex flex-col">
+                  <div className="xl:flex xl:flex-grid xl:gap-24">
+                    <div className="flex flex-col items-start">
                       {room.facilities.length > 0 &&
                         room.facilities.map(
                           (facility: string, index: React.Key) => {
                             return (
-                              <div className="flex gap-2" key={index}>
+                              <div
+                                className="flex justify-start m-0 gap-2 scale-75 md:scale-90 lg:scale-95 xl:scale-100 min-w-full"
+                                key={index}
+                              >
                                 <CheckCircle
-                                  width={24}
-                                  height={24}
+                                  width={16}
+                                  height={16}
                                   color="#8EC5FF"
                                   className="group-hover:stroke-white transition-colors"
                                 />
-                                <p>{facility}</p>
+                                <span className="text-base align-center">
+                                  {facility}
+                                </span>
                               </div>
                             );
                           },
@@ -96,16 +101,16 @@ const Rooms = () => {
                       )}
                     </div>
                     <div className="flex flex-col justify-between">
-                      <div className="bg-[#fff] p-4 rounded-xl h-fit group-hover:shadow-2xl transition-all gap-4 flex flex-col">
+                      <div className="bg-[#fff] p-4 rounded-xl h-fit group-hover:shadow-2xl transition-all gap-4 flex flex-col mt-4 lg:mt-0">
                         {/* Header */}
                         <div className="flex flex-col gap-2">
                           <HeadingText
-                            size="text-2xl"
-                            className="text-red-600 group-hover:animate-pulse"
+                            size="text-xl"
+                            className="lg:text-2xl text-red-600 group-hover:animate-pulse"
                           >
                             {fnConvertToRupiah(room.discountPrice)}
                           </HeadingText>
-                          <HeadingText size="text-lg" className="line-through">
+                          <HeadingText className="lg:text-lg line-through">
                             {fnConvertToRupiah(room.price)}
                           </HeadingText>
                         </div>

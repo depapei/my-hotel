@@ -17,13 +17,16 @@ const Contact = () => {
 export const ContactParagraph = () => {
   return (
     <motion.div className="space-y-32 mb-32 w-full">
-      <HeadingText size="text-7xl" className="group text-center w-full">
+      <HeadingText
+        size="text-3xl"
+        className="lg:text-5xl xl:text-7xl group text-center w-full"
+      >
         Bukan hanya sekedar hotel{" "}
         <span className="hover:cursor-pointer group-hover:text-[#8EC5FF] group-hover:underline transition-all duration-500">
           namun memberikan kenyamanan
         </span>
       </HeadingText>
-      <div className="flex justify-evenly">
+      <div className="flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-evenly">
         <div className="w-[50%] flex flex-col justify-center">
           <HeadingText size="text-lg" className="mb-4">
             Informasi

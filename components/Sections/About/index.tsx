@@ -22,7 +22,7 @@ export const AboutData = () => {
           moni
         </span>
       </HeadingText>
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-2 gap-8 lg:grid-cols-3">
         <Card
           onClick={() => {}}
           cta="Lihat Rating Positif"
@@ -63,26 +63,31 @@ export const AboutData = () => {
 export const AboutParagraph = () => {
   return (
     <div className="space-y-32">
-      <HeadingText size="text-7xl" className="group text-center w-full">
+      <HeadingText
+        size="text-3xl"
+        className="lg:text-5xl xl:text-7xl group text-center w-full"
+      >
         Tentang{" "}
         <span className="hover:cursor-pointer group-hover:text-[#8EC5FF] group-hover:underline transition-all duration-500">
           Kami
         </span>
       </HeadingText>
-      <div className="flex justify-around">
+      <div className="flex flex-col items-center lg:flex-row lg:justify-around">
         <div className="w-[50%] flex flex-col items-center justify-center hover:scale-105  group transition-all duration-500">
           <Image
             src={"/asset/about.png"}
             width={500}
             height={100}
             alt="wajah depan sinar pelangi"
-            className={"rounded-2xl group-hover:shadow-2xl"}
+            className={
+              "rounded-2xl group-hover:shadow-2xl scale-75 md:scale-90 lg:scale-95 xl:scale-100"
+            }
           />
-          <HeadingText className="my-4">
+          <HeadingText className="my-4 hidden lg:block">
             Potret Hotel Sinar Pelangi dari depan
           </HeadingText>
         </div>
-        <div className="w-[50%] flex flex-col justify-center">
+        <div className="w-[50%] mt-4 lg:mt-0 flex flex-col justify-center">
           <HeadingText size="text-lg" className="mb-4">
             Yuk, kenalan dengan hotel kami!
           </HeadingText>
