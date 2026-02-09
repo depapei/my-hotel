@@ -18,8 +18,8 @@ export const ContactParagraph = () => {
   return (
     <motion.div className="space-y-32 mb-32 w-full">
       <HeadingText
-        size="text-3xl"
-        className="lg:text-5xl xl:text-7xl group text-center w-full"
+        size="text-2xl"
+        className="text-2xl md:text-3xl lg:text-4xl group text-center w-full"
       >
         Bukan hanya sekedar hotel{" "}
         <span className="hover:cursor-pointer group-hover:text-[#8EC5FF] group-hover:underline transition-all duration-500">

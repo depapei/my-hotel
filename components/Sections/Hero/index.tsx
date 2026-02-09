@@ -1,15 +1,35 @@
 import Button from "@/components/Atom/Button";
+import { useVisibility } from "@/lib/contexts/VisibilityContext";
 import { Rooms } from "@/lib/helper/menuList";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useEffect, useRef } from "react";
 
 const Hero = () => {
   const router = useRouter();
 
+  const { setNavbarVisibility, isNavbarVisible } = useVisibility();
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setNavbarVisibility(!entry.isIntersecting);
+      },
+      { threshold: 0.1 }, // Trigger saat 10% hero masih terlihat
+    );
+
+    if (heroRef.current) observer.observe(heroRef.current);
+    return () => observer.disconnect();
+
+    console.log(isNavbarVisible);
+  }, [setNavbarVisibility]);
+
   return (
     <section
-      className="relative w-full min-h-screen bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center text-white text-3xl font-bold"
+      ref={heroRef}
+      className="relative w-full min-h-screen bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center text-white text-xl lg:text-3xl font-bold"
       id="home"
     >
       <img
@@ -29,16 +49,18 @@ const Hero = () => {
             className="flex flex-col items-center justify-center"
           >
             <div className="my-8">
-              <p className="text-xl text-white">Google Map Rating</p>
+              <p className="text-base lg:text-xl text-white">
+                Google Map Rating
+              </p>
               <div className="grid grid-cols-5">
                 {[0, 1, 2, 3, 4].map((idx: React.Key) => (
                   <Star key={idx} strokeWidth={0} fill="#FFE07C" />
                 ))}
               </div>
             </div>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-16">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-white mb-16">
               Selamat Datang
-              <span className="block mt-4 text-white pb-4 text-3xl font-medium">
+              <span className="block mt-4 text-white pb-4 text-xl font-medium">
                 Memberikan kenyamanan dengan harga yang aman
               </span>
             </h1>

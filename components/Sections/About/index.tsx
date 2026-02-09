@@ -16,7 +16,10 @@ const About = () => {
 export const AboutData = () => {
   return (
     <div className="space-y-32">
-      <HeadingText size="text-7xl" className="group text-center w-full">
+      <HeadingText
+        size="text-2xl"
+        className="text-2xl md:text-3xl lg:text-4xl group text-center w-full"
+      >
         Testi
         <span className="hover:cursor-pointer group-hover:text-[#8EC5FF] group-hover:underline transition-all duration-500">
           moni

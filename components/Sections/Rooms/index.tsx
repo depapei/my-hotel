@@ -32,7 +32,7 @@ const Rooms = () => {
 
   return (
     <div className="w-full flex flex-col gap-8 lg:gap-12 xl:gap-16 items-center justify-center text-white text-3xl font-bold">
-      <HeadingText size="text-3xl" className="lg:text-5xl xl:text-7xl group">
+      <HeadingText size="text-2xl" className=" md:text-3xl lg:text-4xl group">
         Halo, silahkan jelajahi{" "}
         <span className="hover:cursor-pointer group-hover:text-[#8EC5FF] group-hover:underline transition-all duration-500">
           Kamar Kami
@@ -61,19 +61,19 @@ const Rooms = () => {
                   title={room.name}
                   image={
                     <Image
-                      width={500}
-                      height={100}
+                      width={1080}
+                      height={24}
                       src={imgPath.success && imgPath.id ? imgPath.id : ""}
                       alt={`${room.name}.png`}
                       // className="xl:scale-105"
-                      className="object-cover h-48 lg:h-64 w-full rounded-2xl"
+                      className="object-cover h-24 lg:h-48 w-full rounded-2xl"
                       loading={"lazy"}
                     />
                   }
                   onClick={() => {}}
                 >
-                  <div className="xl:flex xl:flex-grid xl:gap-24">
-                    <div className="flex flex-col items-start">
+                  <div className="lg:flex lg:flex-grid lg:gap-24">
+                    <div className="flex flex-col items-start w-full">
                       {room.facilities.length > 0 &&
                         room.facilities.map(
                           (facility: string, index: React.Key) => {
@@ -88,7 +88,7 @@ const Rooms = () => {
                                   color="#8EC5FF"
                                   className="group-hover:stroke-white transition-colors"
                                 />
-                                <span className="text-base align-center">
+                                <span className="text-base align-center text-start break-words w-full">
                                   {facility}
                                 </span>
                               </div>
@@ -99,7 +99,7 @@ const Rooms = () => {
                         <p className="mt-6">{room.description}</p>
                       )}
                     </div>
-                    <div className="flex flex-col justify-between">
+                    <div className="flex flex-col justify-between mt-4">
                       <div className="bg-[#fff] p-4 rounded-xl h-fit group-hover:shadow-2xl transition-all gap-4 flex flex-col mt-4 lg:mt-0">
                         {/* Header */}
                         <div className="flex flex-col gap-2">

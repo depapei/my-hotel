@@ -1,4 +1,5 @@
 "use client";
+import { useVisibility } from "@/lib/contexts/VisibilityContext";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -13,12 +14,12 @@ export const Menus: MenuType[] = [
     href: "#home",
   },
   {
-    title: "Tentang Kami",
-    href: "#about",
-  },
-  {
     title: "Kamar",
     href: "#rooms",
+  },
+  {
+    title: "Tentang Kami",
+    href: "#about",
   },
   {
     title: "Informasi & Kontak",
@@ -28,15 +29,24 @@ export const Menus: MenuType[] = [
 
 const Navigation = () => {
   const [hash, setHash] = useState<string>("");
+  const { isNavbarVisible } = useVisibility();
 
   const fnSetHash = (hash: string) => {
     setHash(hash);
   };
 
+  useEffect(() => {
+    if (hash) {
+      setTimeout(() => {
+        setHash("");
+      }, 3250);
+    }
+  }, [hash]);
+
   return (
     <>
-      <nav className="opacity-95 lg:hidden flex flex-row justify-center items-center bg-gradient-to-t bg-black bg-opacity-75 w-fit mt-4  rounded-lg shadow-2xl">
-        <ul className="flex flex-row lg:flex-cols p-3 gap-6">
+      <nav className="lg:hidden flex flex-row justify-center items-center w-fit mt-4 rounded-lg">
+        <ul className="flex-1 flex flex-row lg:flex-cols p-3 gap-6">
           {Menus.map((menu: MenuType, idx: React.Key) => {
             const { href, title } = menu;
             return (
@@ -52,18 +62,21 @@ const Navigation = () => {
           })}
         </ul>
       </nav>
-      <nav className="hidden lg:flex flex-row justify-center items-center bg-gradient-to-t bg-black bg-opacity-75 w-fit lg:opacity-95 mt-4  rounded-lg shadow-2xl">
-        {/* <Image
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp2bJAndZZhiaNNogkeVbbY1Lq7aRxXx70cA&s"
-            alt="logo"
-            height={10}
-            width={10}
-            /> */}
+
+      {/* Desktop */}
+      <nav
+        className={`hidden lg:flex flex-row justify-around items-center w-full ${isNavbarVisible ? "bg-blue-500 opacity-100" : "bg-opacity-0"} transition-all duration-500`}
+      >
+        <div className="text-[#BEDBFF] ">
+          <p className="text-base font-semibold">Sinar Pelangi</p>
+          <p className="text-sm">Hotel</p>
+        </div>
         <ul className="flex flex-row lg:flex-cols p-3 gap-6">
           {Menus.map((menu: MenuType, idx: React.Key) => {
             const { href, title } = menu;
             return (
               <Link
+                onClick={() => fnSetHash(href)}
                 key={idx}
                 href={href}
                 className={`hover:animate-pulse text-white font-medium ${hash === href && "animate-pulse"} flex justify-center items-center`}
