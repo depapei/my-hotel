@@ -1,18 +1,26 @@
+import { ButtonHTMLAttributes } from "react";
+
 const Button = (props: {
-  label: string;
+  label?: string;
   icon?: React.ReactNode;
   detail?: React.ReactNode;
+  children?: React.ReactNode;
+  disabled?: boolean;
+  type?: "submit" | "reset" | "button";
   onClick: () => void;
 }) => {
-  const { label, icon, onClick, detail } = props;
+  const { label, icon, onClick, detail, children, disabled, type } = props;
   return (
     <>
       <button
         className="cursor-pointer group relative flex gap-1.5 lg:px-8 py-4 bg-[#5278F5] bg-opacity-100 text-[#fff] rounded-md hover:bg-opacity-70 transition font-semibold shadow-md text-base justify-center sm:w-full"
         onClick={onClick}
+        disabled={disabled}
+        type={type}
       >
         {icon}
         {label}
+        {children}
         {detail && (
           <div className="absolute opacity-0 top-full mt-4 rounded-md bg-[#6c8efe] bg-opacity-100 left-1/2 -translate-x-1/2 group-hover:opacity-100 transition-opacity shadow-lg calc(100%+25px) break-words">
             {detail}

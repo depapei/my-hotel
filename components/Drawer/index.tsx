@@ -6,6 +6,7 @@ import {
   useAnimate,
   motion,
 } from "framer-motion";
+import Button from "../Atom/Button";
 
 interface DCDInterface {
   open: boolean;
@@ -53,7 +54,7 @@ const DragCloseDrawer = ({ open, setOpen, children }: DCDInterface) => {
             transition={{
               ease: "easeInOut",
             }}
-            className="absolute bottom-0 h-[75vh] w-full overflow-hidden rounded-t-3xl bg-neutral-900"
+            className="absolute bottom-0 h-[75vh] w-full overflow-hidden rounded-t-3xl bg-white"
             style={{ y }}
             drag="y"
             dragControls={controls}
@@ -72,15 +73,15 @@ const DragCloseDrawer = ({ open, setOpen, children }: DCDInterface) => {
               bottom: 0.5,
             }}
           >
-            <div className="absolute left-0 right-0 top-0 z-10 flex justify-center bg-neutral-900 p-4">
+            <div className="absolute left-0 right-0 top-0 z-10 flex justify-center bg-gray-100 p-4">
               <button
                 onPointerDown={(e) => {
                   controls.start(e);
                 }}
-                className="h-2 w-14 cursor-grab touch-none rounded-full bg-neutral-700 active:cursor-grabbing"
+                className="h-2 w-14 cursor-grab touch-none rounded-full bg-gray-300 active:cursor-grabbing"
               ></button>
             </div>
-            <div className="relative z-0 h-full overflow-y-scroll p-4 pt-12">
+            <div className="relative z-0 h-full overflow-y-auto p-4 pt-12">
               {children}
             </div>
           </motion.div>
@@ -89,3 +90,5 @@ const DragCloseDrawer = ({ open, setOpen, children }: DCDInterface) => {
     </>
   );
 };
+
+export default DragCloseDrawer;

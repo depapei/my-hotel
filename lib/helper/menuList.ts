@@ -4,13 +4,13 @@ export const Home = {
 };
 export const About = {
   title: "Tentang Kami",
-  href: "/about",
+  href: "/#about",
 };
 export const Rooms = {
   title: "Kamar",
-  href: "/rooms",
+  href: "/#rooms",
 };
 export const Contact = {
   title: "Informasi & Kontak",
-  href: "/contact",
+  href: "/#contact",
 };
