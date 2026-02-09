@@ -30,6 +30,11 @@ export const getAllRoomsFacilities = async () => {
               },
             },
           },
+          orderBy: {
+            facilities: {
+              name: "asc",
+            },
+          },
         },
       },
       where: {
