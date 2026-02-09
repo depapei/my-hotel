@@ -7,8 +7,8 @@ import Image from "next/image";
 const About = () => {
   return (
     <div className="w-full bg-white flex flex-col justify-center font-bold gap-32">
-      <AboutData />
       <AboutParagraph />
+      <AboutData />
     </div>
   );
 };
@@ -18,10 +18,10 @@ export const AboutData = () => {
     <div className="space-y-32">
       <HeadingText
         size="text-2xl"
-        className="text-2xl md:text-3xl lg:text-4xl group text-center w-full"
+        className="md:text-3xl lg:text-4xl group text-center w-full"
       >
         Testi
-        <span className="hover:cursor-pointer group-hover:text-[#8EC5FF] group-hover:underline transition-all duration-500">
+        <span className="hover:cursor-pointer text-[#8EC5FF] underline transition-all duration-500">
           moni
         </span>
       </HeadingText>
@@ -67,11 +67,11 @@ export const AboutParagraph = () => {
   return (
     <div className="space-y-32">
       <HeadingText
-        size="text-3xl"
-        className="lg:text-5xl xl:text-7xl group text-center w-full"
+        size="text-2xl"
+        className="md:text-3xl lg:text-4xl group text-center w-full"
       >
         Tentang{" "}
-        <span className="hover:cursor-pointer group-hover:text-[#8EC5FF] group-hover:underline transition-all duration-500">
+        <span className="hover:cursor-pointer text-[#8EC5FF] underline transition-all duration-500">
           Kami
         </span>
       </HeadingText>

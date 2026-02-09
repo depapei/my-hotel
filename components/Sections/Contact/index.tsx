@@ -22,7 +22,7 @@ export const ContactParagraph = () => {
         className="text-2xl md:text-3xl lg:text-4xl group text-center w-full"
       >
         Bukan hanya sekedar hotel{" "}
-        <span className="hover:cursor-pointer group-hover:text-[#8EC5FF] group-hover:underline transition-all duration-500">
+        <span className="hover:cursor-pointer text-[#8EC5FF] underline transition-all duration-500">
           namun memberikan kenyamanan
         </span>
       </HeadingText>
