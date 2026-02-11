@@ -23,8 +23,6 @@ const Hero = () => {
 
     if (heroRef.current) observer.observe(heroRef.current);
     return () => observer.disconnect();
-
-    console.log(isNavbarVisible);
   }, [setNavbarVisibility]);
 
   return (
@@ -64,7 +62,9 @@ const Hero = () => {
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-white mb-16">
               Selamat Datang
               <span className="block mt-4 text-white pb-4 text-xl font-medium">
-                Harga boleh hemat, tetapi kenyamanan tetap kami utamakan. Rasakan pengalaman menginap yang menyenangkan tanpa khawatir soal biaya.
+                Harga boleh hemat, tetapi kenyamanan tetap kami utamakan.
+                Rasakan pengalaman menginap yang menyenangkan tanpa khawatir
+                soal biaya.
               </span>
             </h1>
             <Button

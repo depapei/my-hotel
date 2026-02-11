@@ -50,8 +50,6 @@ const Rooms = () => {
     resolver: yupResolver(bookingValidate),
   });
 
-  useEffect(() => console.log(errors), [errors]);
-
   const onSubmit: SubmitHandler<inputs> = (data) => {
     const message = `Halo! nama saya ${data.guestName}, saya tertarik untuk booking kamar di hotel anda dengan rincian:\n\nKamar: ${data.roomName}\nTanggal: ${data.start} s/d ${data.end}\n\nTolong infokan lebih lanjut ya, terima kasih :)`;
     const phoneNumber = process.env.NOMOR_HP || "+6281398490410";
@@ -190,7 +188,7 @@ const Rooms = () => {
           </HeadingText>
           <div className="flex flex-col justify-evenly lg:flex-row gap-4 py-8">
             {selectedRoom && (
-              <div className="animate-pulse scale-50 -my-36 lg:m-0 lg:scale-100">
+              <div className="scale-50 -my-36 lg:m-0 lg:scale-100">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
