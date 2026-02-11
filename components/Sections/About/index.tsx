@@ -8,7 +8,9 @@ const About = () => {
   return (
     <div className="w-full bg-white flex flex-col justify-center font-bold gap-4">
       <AboutParagraph />
-      <AboutData />
+      <div className="mt-8 lg:mt-16">
+        <AboutData />
+      </div>
     </div>
   );
 };
