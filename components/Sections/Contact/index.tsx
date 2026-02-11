@@ -17,13 +17,9 @@ const Contact = () => {
 export const ContactParagraph = () => {
   return (
     <motion.div className="px-8 space-y-4 mb-8 w-full">
-      <HeadingText
-        size="text-4xl"
-        className="group text-center w-full"
-      >
+      <HeadingText size="text-4xl" className="group text-center w-full">
         Bukan hanya sekedar hotel namun memberikan kenyamanan
-        <span className="hover:cursor-pointer text-[#8EC5FF] underline transition-all duration-500">
-        </span>
+        <span className="hover:cursor-pointer text-[#8EC5FF] underline transition-all duration-500"></span>
       </HeadingText>
       <div className="flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-evenly">
         <div className="w-full px-8 lg:w-[50%] flex flex-col justify-center">
@@ -55,7 +51,7 @@ export const ContactParagraph = () => {
                   size="text-xl"
                   className="hover:text-green-600 transition-all"
                 >
-                  +62 0813 8062 4766
+                  +62 813 8062 4766
                 </ParagraphText>
               </Link>
             </div>
@@ -114,7 +110,6 @@ const EmbedMap = () => {
           height: 100% !important;
           border: 0;
         }
-
       `}</style>
     </div>
   );
