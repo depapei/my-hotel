@@ -13,11 +13,12 @@ export const HeadingText = (props: {
     | "text-7xl"
     | "text-8xl"
     | "text-9xl";
+  color?: string;
   className?: string;
 }) => {
-  const { children, size, className } = props;
+  const { children, size='text-lg', className, color='text-[#6B6B6B]' } = props;
   return (
-    <h1 className={`font-semibold ${size} text-[#6B6B6B] ${className}`}>
+    <h1 className={`font-semibold ${size} ${color} ${className}`}>
       {children}
     </h1>
   );

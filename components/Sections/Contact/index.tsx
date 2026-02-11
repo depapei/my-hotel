@@ -16,19 +16,18 @@ const Contact = () => {
 
 export const ContactParagraph = () => {
   return (
-    <motion.div className="space-y-32 mb-32 w-full">
+    <motion.div className="px-8 space-y-4 mb-8 w-full">
       <HeadingText
-        size="text-2xl"
-        className="text-2xl md:text-3xl lg:text-4xl group text-center w-full"
+        size="text-4xl"
+        className="group text-center w-full"
       >
-        Bukan hanya sekedar hotel{" "}
+        Bukan hanya sekedar hotel namun memberikan kenyamanan
         <span className="hover:cursor-pointer text-[#8EC5FF] underline transition-all duration-500">
-          namun memberikan kenyamanan
         </span>
       </HeadingText>
       <div className="flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-evenly">
-        <div className="w-[50%] flex flex-col justify-center">
-          <HeadingText size="text-lg" className="mb-4">
+        <div className="w-full px-8 lg:w-[50%] flex flex-col justify-center">
+          <HeadingText size="text-lg" className="mb-4 mt-6">
             Informasi
           </HeadingText>
           <HeadingText size="text-2xl" className="mb-4">
@@ -62,7 +61,7 @@ export const ContactParagraph = () => {
             </div>
           </div>
         </div>
-        <div className="w-[50%] flex flex-col items-center justify-center hover:scale-105  group transition-all duration-500">
+        <div className="w-full px-8 lg:w-[50%] flex flex-col items-center justify-center hover:scale-105  group transition-all duration-500">
           <EmbedMap />
         </div>
       </div>
@@ -92,26 +91,30 @@ const EmbedMap = () => {
             overflow: "hidden",
           }}
         >
-          Retro Games Online
+          Sinar Pelangi
         </a>
       </div>
       <style jsx>{`
         .embed-map-fixed {
           position: relative;
-          text-align: right;
-          width: 450px;
-          height: 250px;
+          width: 100%;
+          max-width: 450px; /* opsional, bisa dihapus kalau mau full */
+          aspect-ratio: 16 / 9; /* bisa ganti sesuai kebutuhan */
         }
+
         .embed-map-container {
+          width: 100%;
+          height: 100%;
           overflow: hidden;
           background: none !important;
-          width: 450px;
-          height: 250px;
         }
+
         .embed-map-frame {
-          width: 450px !important;
-          height: 250px !important;
+          width: 100% !important;
+          height: 100% !important;
+          border: 0;
         }
+
       `}</style>
     </div>
   );

@@ -13,7 +13,7 @@ const Button = (props: {
   return (
     <>
       <button
-        className="cursor-pointer group relative flex gap-1.5 p-2 bg-[#5278F5] bg-opacity-100 text-[#fff] rounded-md hover:bg-opacity-70 transition font-semibold shadow-md text-base justify-center sm:w-full"
+        className="cursor-pointer group relative flex gap-1.5 p-2 bg-[#5278F5] bg-opacity-100 text-[#fff] rounded-md hover:bg-opacity-70 transition font-semibold shadow-md justify-center sm:w-full lg:w-fit lg:px-12 px-8"
         onClick={onClick}
         disabled={disabled}
         type={type}
