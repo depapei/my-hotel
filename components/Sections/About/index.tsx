@@ -85,7 +85,7 @@ export const AboutParagraph = () => {
           </HeadingText>
           <ParagraphText size="text-xl">
             Kami selalu ingin memberikan kenyamanan kepada pelanggan kami,
-            dengan harga yang terjangkau bukan berati pelayanan kami tidak
+            dengan harga yang terjangkau bukan berarti pelayanan kami tidak
             terjangkau, kami selalu mendengar masukan dari pelanggan kami, Sinar
             Pelangi menunggu kedatangan kalian.
           </ParagraphText>
