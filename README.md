@@ -1,37 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sinar Pelangi Hotel - Landing Page
 
-## Getting Started
+[![Next.js](https://img.shields.io/badge/Next.js-14.0-blue)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-First, run the development server:
+Landing page modern dan responsif untuk Hotel Sinar Pelangi, sebuah hotel yang menawarkan pengalaman menginap yang nyaman dengan sentuhan kehangatan dan pelayanan terbaik. Platform ini dirancang untuk memberikan informasi lengkap tentang fasilitas hotel, ketersediaan kamar, dan memudahkan proses pemesanan langsung melalui WhatsApp.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🌟 Tentang Hotel Sinar Pelangi
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Hotel Sinar Pelangi adalah destinasi akomodasi yang ideal bagi para traveler yang mencari kenyamanan dan kemudahan. Terletak di lokasi strategis dengan akses mudah ke berbagai tempat menarik, hotel ini menawarkan berbagai tipe kamar yang dirancang dengan interior modern dan fasilitas lengkap. Dengan komitmen memberikan pelayanan terbaik, Sinar Pelangi siap menjadi tempat peristirahatan yang sempurna untuk liburan maupun perjalanan bisnis Anda.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **HTTP Client**: Axios
+- **Data Fetching**: TanStack Query (React Query)
+- **Database ORM**: Prisma
+- **Database**: PostgreSQL/MySQL (sesuai konfigurasi)
 
-## Learn More
+## ✨ Fitur Utama
 
-To learn more about Next.js, take a look at the following resources:
+### 1. **Galeri Kamar**
+- Tampilan visual kamar yang menarik dengan foto berkualitas tinggi
+- Informasi detail setiap tipe kamar (fasilitas, harga, ukuran)
+- Filter dan pencarian kamar berdasarkan preferensi
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. **Sistem Booking WhatsApp**
+- Pemesanan kamar langsung terhubung ke WhatsApp
+- Form booking yang user-friendly dengan validasi input
+- Konfirmasi otomatis melalui WhatsApp
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. **Company Profile**
+- Informasi lengkap tentang Hotel Sinar Pelangi
+- Sejarah dan visi misi hotel
+- Kontak dan lokasi hotel yang jelas
 
-## Deploy on Vercel
+### 4. **Content Management System (Coming Soon)**
+- Dashboard admin untuk mengelola konten
+- Manajemen kamar dan fasilitas
+- Update informasi hotel secara real-time
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# my-hotel
+## 📁 Struktur Project
