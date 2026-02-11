@@ -70,8 +70,12 @@ const Rooms = () => {
         <HeadingText size='text-4xl' className="group">
           Lihat Kamar Kami
         </HeadingText>
-        <HeadingText size='text-xl' className="text-center" color='text-blue-500'>
-          Disinilah kenyaman tercipta dengan harga yang terjangkau
+        <HeadingText
+          size="text-xl"
+          className="text-center"
+          color="text-blue-500"
+        >
+          Disinilah kenyamanan tercipta dengan harga yang terjangkau
         </HeadingText>
       </div>
 
