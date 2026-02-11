@@ -22,7 +22,7 @@ export const Card = (props: {
         <div className="pt-6 text-lg font-semibold leading-7">
           <p>
             <span className="text-purple-500 transition-all duration-500 group-hover:text-white">
-              {cta} →
+              {cta}
             </span>
           </p>
         </div>

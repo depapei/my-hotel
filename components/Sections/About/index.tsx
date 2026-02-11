@@ -28,7 +28,7 @@ export const AboutData = () => {
       <div className="grid grid-cols-2 gap-8 lg:grid-cols-3">
         <Card
           onClick={() => {}}
-          cta="Lihat Rating Positif"
+          cta="Rating Positif"
           description="Dengan bintang 4,9 membuktikan bahwa hotel kami melayani dengan hati."
           icon={
             <div className="flex gap-1 justify-center items-center">
@@ -39,7 +39,7 @@ export const AboutData = () => {
         />
         <Card
           onClick={() => {}}
-          cta="Lihat pengalaman"
+          cta="Pengalaman Nyata"
           description="Pengalaman 4 tahun, membuat kita ingin terus berkembang dan selalu hati pelanggan."
           icon={
             <div className="flex gap-1 justify-center items-center">
@@ -50,7 +50,7 @@ export const AboutData = () => {
         />
         <Card
           onClick={() => {}}
-          cta="Kepuasan"
+          cta="Kepuasan Pelanggan"
           description="Semua pelanggan kami selalu puas ketika menginap di hotel kami."
           icon={
             <div className="flex gap-1 justify-center items-center">
