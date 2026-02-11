@@ -190,7 +190,7 @@ const Rooms = () => {
           </HeadingText>
           <div className="flex flex-col justify-evenly lg:flex-row gap-4 py-8">
             {selectedRoom && (
-              <div className="scale-50 -my-32 lg:m-0 lg:scale-100">
+              <div className="animate-pulse scale-50 -my-36 lg:m-0 lg:scale-100">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -284,12 +284,12 @@ const Rooms = () => {
                       <input
                         {...field}
                         type="text"
-                        placeholder={`Halo, tolong sebutkan nama kamu! :D`}
+                        placeholder={`cth: Moris Wirantara`}
                         onChange={(e: any) => {
                           const val = e.target.value;
                           field.onChange(val);
                         }}
-                        className={`placeholder:font-normal text-base border p-4 w-full rounded-2xl text-gray-600 ${errors.guestName ? "border-red-600 animate-pulse placeholder:text-red-600 focus:outline-red-600" : "border-gray-600 focus:outline-blue-600"} `}
+                        className={` text-base border p-4 w-full rounded-2xl text-gray-600 ${errors.guestName ? "border-red-600 animate-pulse placeholder:text-red-600 focus:outline-red-600" : "border-gray-600 focus:outline-blue-600"} `}
                       />
                     )}
                   />
