@@ -190,7 +190,7 @@ const Rooms = () => {
           </HeadingText>
           <div className="flex flex-col justify-evenly lg:flex-row gap-4 py-8">
             {selectedRoom && (
-              <div className="">
+              <div className="scale-50 -my-32 lg:m-0 lg:scale-100">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
