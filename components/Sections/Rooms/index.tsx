@@ -65,22 +65,24 @@ const Rooms = () => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-8 lg:gap-12 xl:gap-16 items-center justify-center text-white text-3xl font-bold">
-      <HeadingText size="text-2xl" className=" md:text-3xl lg:text-4xl group">
-        Halo, silahkan jelajahi{" "}
-        <span className="hover:cursor-pointer text-[#8EC5FF] underline transition-all duration-500">
-          Kamar Kami
-        </span>
-      </HeadingText>
+    <div className="w-full flex flex-col gap-4 items-center justify-center text-white text-3xl font-bold">
+      <div className="text-center">
+        <HeadingText size='text-4xl' className="group">
+          Lihat Kamar Kami
+        </HeadingText>
+        <HeadingText size='text-xl' className="text-center" color='text-blue-500'>
+          Disinilah kenyaman tercipta dengan harga yang terjangkau
+        </HeadingText>
+      </div>
 
       {isError && <div className="text-red-600">Error</div>}
       {isLoading && (
-        <div className="grid grid-cols-2 sm:gap-4 md:gap-8 lg:gap-12 xl:gap-16">
+        <div className="flex flex-col w-full gap-6 p-6 lg:grid lg:grid-cols-2 sm:gap-4 md:gap-8 lg:gap-12 xl:gap-16">
           <RoomCardLoading />
           <RoomCardLoading />
         </div>
       )}
-      <div className="grid grid-cols-2 sm:gap-4 md:gap-8 lg:gap-12 xl:gap-16">
+      <div className="flex flex-col w-full gap-6 p-6 lg:grid lg:grid-cols-2 sm:gap-4 md:gap-8 lg:gap-12 xl:gap-16">
         {rooms.length > 0 &&
           rooms.map((room: IResponseRooms, idx: React.Key) => {
             const imgPath = deobfuscateId(room.img);
@@ -100,7 +102,7 @@ const Rooms = () => {
                       src={imgPath.success && imgPath.id ? imgPath.id : ""}
                       alt={`${room.name}.png`}
                       // className="xl:scale-105"
-                      className="object-cover h-24 lg:h-48 w-full rounded-2xl"
+                      className="object-cover h-48 w-full rounded-2xl"
                       loading={"lazy"}
                     />
                   }
@@ -113,7 +115,7 @@ const Rooms = () => {
                           (facility: string, index: React.Key) => {
                             return (
                               <div
-                                className="flex justify-start m-0 gap-2 scale-75 md:scale-90 lg:scale-95 xl:scale-100 min-w-full"
+                                className="flex m-0 gap-2 min-w-full"
                                 key={index}
                               >
                                 <CheckCircle
@@ -122,7 +124,7 @@ const Rooms = () => {
                                   color="#8EC5FF"
                                   className="group-hover:stroke-white transition-colors"
                                 />
-                                <span className="text-base align-center text-start break-words w-full">
+                                <span className="text-base align-start text-start break-words w-full">
                                   {facility}
                                 </span>
                               </div>
@@ -133,23 +135,23 @@ const Rooms = () => {
                         <p className="mt-6">{room.description}</p>
                       )}
                     </div>
-                    <div className="flex flex-col justify-between mt-4 lg:mt-0">
-                      <div className="bg-[#fff] p-4 rounded-xl h-fit group-hover:shadow-2xl transition-all gap-4 flex flex-col mt-4 lg:mt-0">
+                    <div className="flex flex-col justify-between mt-2 lg:mt-0">
+                      <div className="bg-[#fff] p-4 rounded-xl h-fit group-hover:shadow-2xl transition-all gap-4 flex flex-col">
                         {/* Header */}
                         <div className="flex flex-col gap-2">
                           <HeadingText
-                            size="text-xl"
+                            size="text-lg"
                             className="lg:text-2xl text-red-600 group-hover:animate-pulse"
                           >
                             {fnConvertToRupiah(room.discountPrice)}
                           </HeadingText>
-                          <HeadingText className="lg:text-lg line-through">
+                          <HeadingText size='text-xs' className="lg:text-lg line-through">
                             {fnConvertToRupiah(room.price)}
                           </HeadingText>
                         </div>
                         <ParagraphText
-                          className="h-0 opacity-0 group-hover:opacity-100 group-hover:h-fit transition-all max-w-full"
-                          size="text-sm"
+                          size="text-xs"
+                          className="lg:opacity-0 group-hover:opacity-100 group-hover:h-fit transition-all max-w-full"
                         >
                           Tunggu apalagi? booking sekarang!
                         </ParagraphText>
@@ -230,7 +232,7 @@ const Rooms = () => {
                           <p className="mt-6">{selectedRoom.description}</p>
                         )}
                       </div>
-                      <div className="flex flex-col justify-between mt-4">
+                      <div className="flex flex-col justify-between">
                         <div className="bg-[#fff] p-4 rounded-xl h-fit group-hover:shadow-2xl transition-all gap-4 flex flex-col mt-4 lg:mt-0">
                           {/* Header */}
                           <div className="flex flex-col gap-2">

@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const About = () => {
   return (
-    <div className="w-full bg-white flex flex-col justify-center font-bold gap-32">
+    <div className="w-full bg-white flex flex-col justify-center font-bold gap-4">
       <AboutParagraph />
       <AboutData />
     </div>
@@ -15,17 +15,14 @@ const About = () => {
 
 export const AboutData = () => {
   return (
-    <div className="space-y-32">
+    <div className="space-y-4 lg:space-y-8 max-w-full px-16">
       <HeadingText
-        size="text-2xl"
-        className="md:text-3xl lg:text-4xl group text-center w-full"
+      size="text-4xl"
+        className="group text-center w-full"
       >
-        Testi
-        <span className="hover:cursor-pointer text-[#8EC5FF] underline transition-all duration-500">
-          moni
-        </span>
+        Testimoni
       </HeadingText>
-      <div className="grid grid-cols-2 gap-8 lg:grid-cols-3">
+      <div className="grid gap-8 lg:grid-cols-3">
         <Card
           onClick={() => {}}
           cta="Rating Positif"
@@ -65,32 +62,29 @@ export const AboutData = () => {
 
 export const AboutParagraph = () => {
   return (
-    <div className="space-y-32">
+    <div className="space-y-4">
       <HeadingText
-        size="text-2xl"
-        className="md:text-3xl lg:text-4xl group text-center w-full"
+        size="text-4xl"
+        className="group text-center w-full"
       >
-        Tentang{" "}
-        <span className="hover:cursor-pointer text-[#8EC5FF] underline transition-all duration-500">
-          Kami
-        </span>
+        Tentang Kami
       </HeadingText>
       <div className="flex flex-col items-center lg:flex-row lg:justify-around">
-        <div className="w-[50%] flex flex-col items-center justify-center hover:scale-105  group transition-all duration-500">
+        <div className="w-full px-8 lg:w-[50%] flex flex-col items-center justify-center hover:scale-105  group transition-all duration-500 lg:p-8">
           <Image
             src={"/asset/about.png"}
-            width={500}
+            width={1080}
             height={100}
             alt="wajah depan sinar pelangi"
             className={
-              "rounded-2xl group-hover:shadow-2xl scale-75 md:scale-90 lg:scale-95 xl:scale-100"
+              "rounded-2xl group-hover:shadow-2xl"
             }
           />
           <HeadingText className="my-4 hidden lg:block">
             Potret Hotel Sinar Pelangi dari depan
           </HeadingText>
         </div>
-        <div className="w-[50%] mt-4 lg:mt-0 flex flex-col justify-center">
+        <div className="w-full px-8 lg:w-[50%] mt-4 lg:mt-0 flex flex-col justify-center">
           <HeadingText size="text-lg" className="mb-4">
             Yuk, kenalan dengan hotel kami!
           </HeadingText>

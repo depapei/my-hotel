@@ -15,7 +15,7 @@ const PublicLayout = ({
       <div className="fixed flex justify-center items-center w-full z-50">
         <Navigation />
       </div>
-      <article>
+      <article className='w-full'>
         {isHomePage && <Hero />}
         <div className={`mx-auto container ${!isHomePage && "mt-16"}`}>
           <div className="mb-8">{children}</div>

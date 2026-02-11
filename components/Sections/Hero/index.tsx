@@ -3,6 +3,7 @@ import { useVisibility } from "@/lib/contexts/VisibilityContext";
 import { Rooms } from "@/lib/helper/menuList";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 
@@ -32,7 +33,9 @@ const Hero = () => {
       className="relative w-full min-h-screen bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center text-white text-xl lg:text-3xl font-bold"
       id="home"
     >
-      <img
+      <Image
+        width={1080}
+        height={100}
         src="/asset/hero.png"
         alt="Sinar Pelangi Hero"
         className="absolute inset-0 w-full h-full object-cover object-center"
@@ -61,7 +64,7 @@ const Hero = () => {
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-white mb-16">
               Selamat Datang
               <span className="block mt-4 text-white pb-4 text-xl font-medium">
-                Memberikan kenyamanan dengan harga yang aman
+                Harga boleh hemat, tetapi kenyamanan tetap kami utamakan. Rasakan pengalaman menginap yang menyenangkan tanpa khawatir soal biaya.
               </span>
             </h1>
             <Button
