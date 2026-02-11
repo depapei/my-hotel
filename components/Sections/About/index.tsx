@@ -16,10 +16,7 @@ const About = () => {
 export const AboutData = () => {
   return (
     <div className="space-y-4 lg:space-y-8 max-w-full px-16">
-      <HeadingText
-      size="text-4xl"
-        className="group text-center w-full"
-      >
+      <HeadingText size="text-4xl" className="group text-center w-full">
         Testimoni
       </HeadingText>
       <div className="grid gap-8 lg:grid-cols-3">
@@ -37,7 +34,7 @@ export const AboutData = () => {
         <Card
           onClick={() => {}}
           cta="Pengalaman Nyata"
-          description="Pengalaman 4 tahun, membuat kita ingin terus berkembang dan selalu hati pelanggan."
+          description="Pengalaman 4 tahun, membuat kita ingin terus berkembang dan selalu memuaskan hati pelanggan."
           icon={
             <div className="flex gap-1 justify-center items-center">
               <p className="text-white text-xl">4</p>
@@ -63,10 +60,7 @@ export const AboutData = () => {
 export const AboutParagraph = () => {
   return (
     <div className="space-y-4">
-      <HeadingText
-        size="text-4xl"
-        className="group text-center w-full"
-      >
+      <HeadingText size="text-4xl" className="group text-center w-full">
         Tentang Kami
       </HeadingText>
       <div className="flex flex-col items-center lg:flex-row lg:justify-around">
@@ -76,9 +70,7 @@ export const AboutParagraph = () => {
             width={1080}
             height={100}
             alt="wajah depan sinar pelangi"
-            className={
-              "rounded-2xl group-hover:shadow-2xl"
-            }
+            className={"rounded-2xl group-hover:shadow-2xl"}
           />
           <HeadingText className="my-4 hidden lg:block">
             Potret Hotel Sinar Pelangi dari depan
@@ -93,7 +85,7 @@ export const AboutParagraph = () => {
           </HeadingText>
           <ParagraphText size="text-xl">
             Kami selalu ingin memberikan kenyamanan kepada pelanggan kami,
-            dengan harga yang terjangkau bukan berati pelayanan kami tidak
+            dengan harga yang terjangkau bukan berarti pelayanan kami tidak
             terjangkau, kami selalu mendengar masukan dari pelanggan kami, Sinar
             Pelangi menunggu kedatangan kalian.
           </ParagraphText>

@@ -9,8 +9,12 @@ import { useRooms } from "@/lib/httpCall/hooks/getRooms";
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import Image from "next/image";
-import { useMemo, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useEffect, useMemo, useState } from "react";
+import { SubmitHandler, useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import bookingValidate from "@/lib/validateForm/Booking";
+import dayjs from "dayjs";
 
 interface IResponseRooms {
   facilities: string[];
@@ -23,12 +27,7 @@ interface IResponseRooms {
   img: string;
 }
 
-type inputs = {
-  roomId: string;
-  roomName: string;
-  guestName: string;
-  dateRange: any;
-};
+type inputs = yup.InferType<typeof bookingValidate>;
 
 const Rooms = () => {
   const { data, isLoading, isError } = useRooms();
@@ -41,16 +40,21 @@ const Rooms = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedRoom, setSelected] = useState<any>();
   const {
-    setValue,
     register,
     handleSubmit,
     reset,
+    control,
+    setValue,
     formState: { errors },
-  } = useForm<inputs>();
+  } = useForm<inputs>({
+    resolver: yupResolver(bookingValidate),
+  });
+
+  useEffect(() => console.log(errors), [errors]);
 
   const onSubmit: SubmitHandler<inputs> = (data) => {
-    const message = `Hi, perkenalkan nama saya ${data.guestName}, saya ingin membooking ${data.roomName}`;
-    const phoneNumber = "+6281398490410";
+    const message = `Halo! nama saya ${data.guestName}, saya tertarik untuk booking kamar di hotel anda dengan rincian:\n\nKamar: ${data.roomName}\nTanggal: ${data.start} s/d ${data.end}\n\nTolong infokan lebih lanjut ya, terima kasih :)`;
+    const phoneNumber = process.env.NOMOR_HP || "+6281398490410";
     sendWhatsAppMessage(phoneNumber, message);
   };
 
@@ -67,11 +71,15 @@ const Rooms = () => {
   return (
     <div className="w-full flex flex-col gap-4 items-center justify-center text-white text-3xl font-bold">
       <div className="text-center">
-        <HeadingText size='text-4xl' className="group">
+        <HeadingText size="text-4xl" className="group">
           Lihat Kamar Kami
         </HeadingText>
-        <HeadingText size='text-xl' className="text-center" color='text-blue-500'>
-          Disinilah kenyaman tercipta dengan harga yang terjangkau
+        <HeadingText
+          size="text-xl"
+          className="text-center"
+          color="text-blue-500"
+        >
+          Disinilah kenyamanan tercipta dengan harga yang terjangkau
         </HeadingText>
       </div>
 
@@ -145,7 +153,10 @@ const Rooms = () => {
                           >
                             {fnConvertToRupiah(room.discountPrice)}
                           </HeadingText>
-                          <HeadingText size='text-xs' className="lg:text-lg line-through">
+                          <HeadingText
+                            size="text-xs"
+                            className="lg:text-lg line-through"
+                          >
                             {fnConvertToRupiah(room.price)}
                           </HeadingText>
                         </div>
@@ -179,7 +190,7 @@ const Rooms = () => {
           </HeadingText>
           <div className="flex flex-col justify-evenly lg:flex-row gap-4 py-8">
             {selectedRoom && (
-              <div className="">
+              <div className="animate-pulse scale-50 -my-36 lg:m-0 lg:scale-100">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -199,7 +210,7 @@ const Rooms = () => {
                         }
                         alt={`${selectedRoom.name}.png`}
                         // className="xl:scale-105"
-                        className="object-cover h-24 lg:h-48 w-full rounded-2xl"
+                        className="object-cover h-48 w-full rounded-2xl"
                         loading={"lazy"}
                       />
                     }
@@ -212,7 +223,7 @@ const Rooms = () => {
                             (facility: string, index: React.Key) => {
                               return (
                                 <div
-                                  className="flex justify-start m-0 gap-2 scale-75 md:scale-90 lg:scale-95 xl:scale-100 min-w-full"
+                                  className="flex m-0 gap-2 min-w-full"
                                   key={index}
                                 >
                                   <CheckCircle
@@ -221,7 +232,7 @@ const Rooms = () => {
                                     color="#8EC5FF"
                                     className="group-hover:stroke-white transition-colors"
                                   />
-                                  <span className="text-base align-center text-start break-words w-full">
+                                  <span className="text-base align-start text-start break-words w-full">
                                     {facility}
                                   </span>
                                 </div>
@@ -232,17 +243,20 @@ const Rooms = () => {
                           <p className="mt-6">{selectedRoom.description}</p>
                         )}
                       </div>
-                      <div className="flex flex-col justify-between">
-                        <div className="bg-[#fff] p-4 rounded-xl h-fit group-hover:shadow-2xl transition-all gap-4 flex flex-col mt-4 lg:mt-0">
+                      <div className="flex flex-col justify-between mt-2 lg:mt-0">
+                        <div className="bg-[#fff] p-4 rounded-xl h-fit group-hover:shadow-2xl transition-all gap-4 flex flex-col">
                           {/* Header */}
-                          <div className="flex flex-col gap-2">
+                          <div className="flex lg:flex-col gap-2">
                             <HeadingText
-                              size="text-xl"
+                              size="text-lg"
                               className="lg:text-2xl text-red-600 group-hover:animate-pulse"
                             >
                               {fnConvertToRupiah(selectedRoom.discountPrice)}
                             </HeadingText>
-                            <HeadingText className="lg:text-lg line-through">
+                            <HeadingText
+                              size="text-xs"
+                              className="lg:text-lg line-through"
+                            >
                               {fnConvertToRupiah(selectedRoom.price)}
                             </HeadingText>
                           </div>
@@ -253,17 +267,104 @@ const Rooms = () => {
                 </motion.div>
               </div>
             )}
-            <div className="text-gray-300 w-1/2">
+            <div className="text-gray-300 lg:w-1/2 mt-4 lg:mt-0">
               <form
                 className="w-full space-y-4 flex flex-col"
                 onSubmit={handleSubmit(onSubmit)}
               >
-                <input
-                  {...register("guestName", { required: true })}
-                  type="text"
-                  placeholder={`${errors.guestName ? "Nama kamu belum di isi :(" : "Halo, tolong sebutkan nama kamu! :D"}`}
-                  className={`placeholder:font-normal text-base border  p-4 w-full rounded-2xl text-gray-600 ${errors.guestName ? "border-red-600 animate-pulse placeholder:text-red-600 focus:outline-red-600" : "border-gray-600 focus:outline-blue-600"} `}
-                />
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Nama Panggilan{" "}
+                    <span className="text-red-600 text-sm">*</span>
+                  </label>
+                  <Controller
+                    name="guestName"
+                    control={control}
+                    render={({ field }) => (
+                      <input
+                        {...field}
+                        type="text"
+                        placeholder={`cth: Moris Wirantara`}
+                        onChange={(e: any) => {
+                          const val = e.target.value;
+                          field.onChange(val);
+                        }}
+                        className={` text-base border p-4 w-full rounded-2xl text-gray-600 ${errors.guestName ? "border-red-600 animate-pulse placeholder:text-red-600 focus:outline-red-600" : "border-gray-600 focus:outline-blue-600"} `}
+                      />
+                    )}
+                  />
+                  {errors.guestName && (
+                    <p className="mt-1 text-sm text-red-600 font-normal">
+                      {errors.guestName.message}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Tanggal Check-In{" "}
+                    <span className="text-red-600 text-sm">*</span>
+                  </label>
+                  <Controller
+                    name="startDate"
+                    control={control}
+                    render={({ field }) => (
+                      <input
+                        {...field}
+                        type="date"
+                        className={`placeholder:font-normal text-base border p-4 w-full rounded-2xl text-gray-600 ${
+                          errors.startDate
+                            ? "border-red-600 animate-pulse placeholder:text-red-600 focus:outline-red-600"
+                            : "border-gray-600 focus:outline-blue-600"
+                        }`}
+                        onChange={(e: any) => {
+                          const start = e.target.value;
+                          field.onChange(start);
+                          setValue("start", dayjs(start).format("DD MMM YYYY"));
+                        }}
+                        placeholder="Pilih tanggal mulai"
+                      />
+                    )}
+                  />
+                  {errors.startDate && (
+                    <p className="mt-1 text-sm text-red-600 font-normal">
+                      {errors.startDate.message}
+                    </p>
+                  )}
+                </div>
+
+                {/* End Date */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Tanggal Check-Out{" "}
+                    <span className="text-red-600 text-sm">*</span>
+                  </label>
+                  <Controller
+                    name="endDate"
+                    control={control}
+                    render={({ field }) => (
+                      <input
+                        {...field}
+                        type="date"
+                        className={`placeholder:font-normal text-base border p-4 w-full rounded-2xl text-gray-600 ${
+                          errors.endDate
+                            ? "border-red-600 animate-pulse placeholder:text-red-600 focus:outline-red-600"
+                            : "border-gray-600 focus:outline-blue-600"
+                        }`}
+                        onChange={(e: any) => {
+                          const end = e.target.value;
+                          field.onChange(end);
+                          setValue("end", dayjs(end).format("DD MMM YYYY"));
+                        }}
+                        placeholder="Pilih tanggal selesai"
+                      />
+                    )}
+                  />
+                  {errors.endDate && (
+                    <p className="mt-1 text-sm text-red-600 font-normal">
+                      {errors.endDate.message}
+                    </p>
+                  )}
+                </div>
                 {selectedRoom && (
                   <>
                     <input
@@ -280,8 +381,22 @@ const Rooms = () => {
                     />
                   </>
                 )}
+                <Controller
+                  name="start"
+                  control={control}
+                  render={({ field }) => (
+                    <input {...field} type="text" className={`hidden`} />
+                  )}
+                />
+                <Controller
+                  name="end"
+                  control={control}
+                  render={({ field }) => (
+                    <input {...field} type="text" className={`hidden`} />
+                  )}
+                />
                 <input
-                  className="cursor-pointer group relative flex gap-1.5 lg:px-8 py-4 bg-[#5278F5] bg-opacity-100 text-[#fff] rounded-md hover:bg-opacity-70 transition font-semibold shadow-md text-base justify-center w-fit"
+                  className="cursor-pointer group relative flex gap-1.5 p-2 bg-[#5278F5] bg-opacity-100 text-[#fff] rounded-md hover:bg-opacity-70 transition font-semibold shadow-md justify-center sm:w-full lg:w-fit lg:px-12 px-8 text-base"
                   type="submit"
                 />
               </form>
