@@ -17,16 +17,19 @@ const Contact = () => {
 export const ContactParagraph = () => {
   return (
     <motion.div className="px-8 space-y-4 mb-8 w-full">
-      <HeadingText size="text-4xl" className="group text-center w-full">
+      <HeadingText
+        size="text-2xl"
+        className="lg:text-4xl group text-center w-full"
+      >
         Bukan hanya sekedar hotel namun memberikan kenyamanan
         <span className="hover:cursor-pointer text-[#8EC5FF] underline transition-all duration-500"></span>
       </HeadingText>
       <div className="flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-evenly">
         <div className="w-full px-8 lg:w-[50%] flex flex-col justify-center">
-          <HeadingText size="text-lg" className="mb-4 mt-6">
+          <HeadingText size="text-lg" className="mb-2 lg:mb-4 mt-6">
             Informasi
           </HeadingText>
-          <HeadingText size="text-2xl" className="mb-4">
+          <HeadingText size="text-xl" className="mb-4">
             Jl. Trikora Maripi, Distrik Manowari Selatan, Kabupaten Manokwari,
             Papua Barat.
           </HeadingText>
