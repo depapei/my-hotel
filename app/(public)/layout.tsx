@@ -2,6 +2,7 @@
 import Navigation from "@/components/NavBar";
 import Hero from "@/components/Sections/Hero";
 import { usePathname } from "next/navigation";
+import Footer from "@/components/Sections/Footer";
 
 const PublicLayout = ({
   children,
@@ -15,12 +16,17 @@ const PublicLayout = ({
       <div className="fixed flex justify-center items-center w-full z-50">
         <Navigation />
       </div>
-      <article className='w-full'>
+      <article className="w-full">
         {isHomePage && <Hero />}
         <div className={`mx-auto container ${!isHomePage && "mt-16"}`}>
           <div className="mb-8">{children}</div>
         </div>
       </article>
+      <div className="flex flex-col justify-between">
+        <div className="flex justify-center items-center w-full">
+          <Footer />
+        </div>
+      </div>
     </div>
   );
 };

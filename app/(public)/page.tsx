@@ -1,6 +1,7 @@
 "use client";
 import About from "@/components/Sections/About";
 import Contact from "@/components/Sections/Contact";
+import Footer from "@/components/Sections/Footer";
 import Rooms from "@/components/Sections/Rooms";
 
 const Home = () => {
