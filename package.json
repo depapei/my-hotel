@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "clear && next lint",
     "vercel-build": "prisma generate && prisma db pull && next build",
     "build:prod": "prisma generate && prisma db pull && next build",
     "generate:dev": "prisma generate && prisma db pull && next dev"
