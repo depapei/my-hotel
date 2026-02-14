@@ -2,7 +2,7 @@
 import { useVisibility } from "@/lib/contexts/VisibilityContext";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
+import { ArrowUpToLine, Menu } from "lucide-react";
 
 type MenuType = {
   title: string;
@@ -49,16 +49,23 @@ const Navigation = () => {
     <>
       {/* Mobile */}
       <nav
-        className={`lg:hidden flex flex-col justify-center items-left w-full ${isNavbarVisible || mobileMenu ? "bg-blue-500 opacity-100" : "bg-opacity-0"} transition-all duration-500`}
+        className={`lg:hidden flex flex-col justify-center items-left w-full ${isNavbarVisible || mobileMenu ? "bg-blue-500 bg-opacity-100 shadow-2xl" : "bg-opacity-0"} transition-all duration-500`}
       >
-        <ul className="flex-1 flex flex-row lg:flex-cols p-3 gap-6 items-center">
-          <button onClick={() => setMobileMenu(!mobileMenu)}>
-            <Menu color="#FFFFFF" />
-          </button>
+        <ul className="flex-1 flex flex-row lg:flex-cols p-3 gap-6 items-center justify-between">
           <Logo isNavbarVisible={isNavbarVisible} />
+          <button onClick={() => setMobileMenu(!mobileMenu)}>
+            <Menu
+              color="#FFFFFF"
+              className={`${!mobileMenu ? "opacity-100" : "opacity-0 w-0 h-0"} transition-opacity`}
+            />
+            <ArrowUpToLine
+              color="#FFFFFF"
+              className={`${mobileMenu ? "opacity-100" : "opacity-0 h-0 w-0"} transition-opacity`}
+            />
+          </button>
         </ul>
         <div
-          className={`${mobileMenu ? "flex flex-col gap-4 p-4" : " opacity-0 h-0"} transition-all`}
+          className={`${mobileMenu ? "flex flex-col gap-4 px-4 pb-4" : " opacity-0 h-0"} transition-all`}
         >
           {Menus.map((menu: MenuType, idx: React.Key) => {
             const { href, title } = menu;
@@ -72,7 +79,7 @@ const Navigation = () => {
                 }}
                 className={`hover:animate-pulse text-white font-medium ${hash === href && "animate-pulse"} flex justify-center items-center ${mobileMenu ? "opacity-100" : "opacity-0"} transition-all`}
               >
-                <span className="items-start w-full text-start justify-start">
+                <span className="items-center w-full text-center justify-center">
                   {title}
                 </span>
               </Link>
