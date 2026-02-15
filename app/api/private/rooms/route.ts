@@ -1,6 +1,10 @@
 import { createRoom, getAllRoom } from "@/lib/data-access/room";
 import { obfuscateId } from "@/lib/helper/idObfuscator";
-import { InternalServerError, Success } from "@/lib/helper/responses";
+import {
+  InternalServerError,
+  Success,
+  Unauthorized,
+} from "@/lib/helper/responses";
 import { NextRequest } from "next/server";
 
 export const GET = async (request: NextRequest) => {
@@ -20,26 +24,29 @@ export const GET = async (request: NextRequest) => {
 };
 
 export const POST = async (request: NextRequest) => {
-  try {
-    const reqBody = await request.json();
-    const data = await createRoom(reqBody);
+  // WIP Public Cannot add new Room
+  return Unauthorized("Unauthorized");
 
-    if (!data) {
-      return InternalServerError("Failed to create room");
-    }
+  // try {
+  //   const reqBody = await request.json();
+  //   const data = await createRoom(reqBody);
 
-    const { id, name, description, max_capacity, base_price, created_at } =
-      data;
-    const result = {
-      id: obfuscateId(id),
-      name: name,
-      description: description,
-      capacity: `${max_capacity} orang`,
-      price: `${base_price} / Malam`,
-      createdAt: created_at,
-    };
-    return Success(result);
-  } catch (error) {
-    return InternalServerError("Failed to create room");
-  }
+  //   if (!data) {
+  //     return InternalServerError("Failed to create room");
+  //   }
+
+  //   const { id, name, description, max_capacity, base_price, created_at } =
+  //     data;
+  //   const result = {
+  //     id: obfuscateId(id),
+  //     name: name,
+  //     description: description,
+  //     capacity: `${max_capacity} orang`,
+  //     price: `${base_price} / Malam`,
+  //     createdAt: created_at,
+  //   };
+  //   return Success(result);
+  // } catch (error) {
+  //   return InternalServerError("Failed to create room");
+  // }
 };
