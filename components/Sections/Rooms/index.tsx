@@ -6,15 +6,15 @@ import DragCloseDrawer from "@/components/Drawer";
 import fnConvertToRupiah from "@/lib/helper/converter";
 import { deobfuscateId } from "@/lib/helper/idObfuscator";
 import { useRooms } from "@/lib/httpCall/hooks/getRooms";
+import bookingValidate from "@/lib/validateForm/Booking";
+import { yupResolver } from "@hookform/resolvers/yup";
+import dayjs from "dayjs";
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { SubmitHandler, useForm, Controller } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
-import bookingValidate from "@/lib/validateForm/Booking";
-import dayjs from "dayjs";
 
 interface IResponseRooms {
   facilities: string[];
@@ -30,13 +30,18 @@ interface IResponseRooms {
 type inputs = yup.InferType<typeof bookingValidate>;
 
 const Rooms = () => {
-  const { data, isLoading, isError } = useRooms();
+  const { data, isLoading, isError, refetch } = useRooms();
   const rooms: IResponseRooms[] = useMemo(() => {
-    if (data) {
+    if (data && data.length > 0) {
       return data;
     }
     return [];
   }, [data]);
+  useEffect(() => {
+    if (!data || !isLoading) {
+      refetch();
+    }
+  }, [data, isLoading, refetch]);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedRoom, setSelected] = useState<any>();
   const {
@@ -282,7 +287,7 @@ const Rooms = () => {
                       <input
                         {...field}
                         type="text"
-                        placeholder={`cth: Moris Wirantara`}
+                        placeholder={`cth: Moris`}
                         onChange={(e: any) => {
                           const val = e.target.value;
                           field.onChange(val);
