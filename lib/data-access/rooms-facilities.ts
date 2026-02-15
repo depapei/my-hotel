@@ -54,9 +54,7 @@ export const getAllRoomsFacilities = async () => {
         rooms_facilities,
         imagePath,
       } = roomType;
-      const discountPrice =
-        Number(base_price) -
-        (Number(base_price) * 11.111111111111111111111111111111111) / 100;
+      const discountPrice = Number(base_price) - 50000;
       return {
         id: obfuscateId(id),
         img: imagePath ? obfuscateId(imagePath) : "",
