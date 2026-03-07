@@ -1,7 +1,7 @@
 // lib/idObfuscator.ts
 
-const PREFIX = "ENC_"; // opsional: untuk identifikasi
-const SALT = "SINARPELANGISUCCEED2026"; // ganti dengan string rahasia mu
+const PREFIX = "ENC_";
+const SALT = "SINARPELANGISUCCEED2026";
 
 // Encode ID numerik → string
 export const obfuscateId = (id: number | string): string => {
