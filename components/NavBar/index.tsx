@@ -2,7 +2,7 @@
 import { useVisibility } from "@/lib/contexts/VisibilityContext";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowUpToLine, Menu } from "lucide-react";
+import { ArrowUp, ArrowUpToLine, Menu } from "lucide-react";
 
 type MenuType = {
   title: string;
@@ -58,7 +58,7 @@ const Navigation = () => {
               color="#FFFFFF"
               className={`${!mobileMenu ? "opacity-100" : "opacity-0 w-0 h-0"} transition-opacity`}
             />
-            <ArrowUpToLine
+            <ArrowUp
               color="#FFFFFF"
               className={`${mobileMenu ? "opacity-100" : "opacity-0 h-0 w-0"} transition-opacity`}
             />
