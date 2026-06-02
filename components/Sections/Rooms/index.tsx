@@ -57,7 +57,7 @@ const Rooms = () => {
 
   const onSubmit: SubmitHandler<inputs> = (data) => {
     const message = `Halo! nama saya ${data.guestName}, saya tertarik untuk booking kamar di hotel anda dengan rincian:\n\nKamar: ${data.roomName}\nTanggal: ${data.start} s/d ${data.end}\n\nTolong infokan lebih lanjut ya, terima kasih :)`;
-    const phoneNumber = process.env.NOMOR_HP || "+6281398490410";
+    const phoneNumber = process.env.NOMOR_HP || "+6282155353122";
     sendWhatsAppMessage(phoneNumber, message);
   };
 

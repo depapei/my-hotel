@@ -46,15 +46,7 @@ export const ContactParagraph = () => {
                   size="text-xl"
                   className="hover:text-green-600 transition-all"
                 >
-                  +62 821 5535 3122
-                </ParagraphText>
-              </Link>
-              <Link href={"https://wa.me/+6281380624766"}>
-                <ParagraphText
-                  size="text-xl"
-                  className="hover:text-green-600 transition-all"
-                >
-                  +62 813 8062 4766
+                  +62 82155353122
                 </ParagraphText>
               </Link>
             </div>
