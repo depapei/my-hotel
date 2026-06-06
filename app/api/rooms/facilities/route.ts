@@ -4,7 +4,7 @@ import { NextRequest } from "next/server";
 
 export const GET = async (request: NextRequest) => {
   try {
-    const data = await GetAllRoom();
+    const data = GetAllRoom();
     const roomsFacilities = data;
     return Success(roomsFacilities);
   } catch (error) {
